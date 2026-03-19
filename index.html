@@ -13,8 +13,7 @@
             --bg-soft: #fdfbf9;
             --text-main: #2d3436;
             --text-muted: #636e72;
-            --glass: rgba(255, 255, 255, 0.8);
-            --transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         body {
@@ -25,22 +24,21 @@
             letter-spacing: -0.01em;
         }
 
-        /* Elements Decorativos de Fundo */
         .blur-glow {
             position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(91, 138, 130, 0.15) 0%, rgba(253, 251, 249, 0) 70%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(91, 138, 130, 0.12) 0%, rgba(253, 251, 249, 0) 70%);
             border-radius: 50%;
-            filter: blur(80px);
+            filter: blur(100px);
             z-index: -1;
         }
 
-        /* Custom Navbar */
+        /* Navbar */
         .navbar {
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
             background: rgba(253, 251, 249, 0.8);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(0,0,0,0.03);
             padding: 20px 0;
         }
 
@@ -51,24 +49,23 @@
             color: var(--primary-dark) !important;
         }
 
-        /* Hero Section Dinâmica */
+        /* Hero */
         .hero {
-            padding: 160px 0 100px;
+            padding: 180px 0 100px;
             position: relative;
         }
 
         .hero-title {
-            font-size: clamp(3rem, 7vw, 5rem);
+            font-size: clamp(3.2rem, 8vw, 5.5rem);
             font-weight: 900;
-            line-height: 0.95;
+            line-height: 0.9;
             margin-bottom: 30px;
-            letter-spacing: -0.04em;
+            letter-spacing: -0.05em;
         }
 
         .hero-title span {
             color: var(--primary);
             position: relative;
-            display: inline-block;
         }
 
         .hero-title span::after {
@@ -77,54 +74,107 @@
             bottom: 15px;
             left: 0;
             width: 110%;
-            height: 12px;
+            height: 15px;
             background: var(--accent);
-            opacity: 0.2;
+            opacity: 0.15;
             z-index: -1;
             transform: rotate(-1deg);
         }
 
-        .hero-p {
-            font-size: 1.25rem;
-            max-width: 500px;
-            color: var(--text-muted);
-            margin-bottom: 40px;
-            line-height: 1.6;
-        }
-
-        .hero-image-container {
+        .hero-image-wrap {
             position: relative;
-            z-index: 1;
+            padding-left: 40px;
         }
 
-        .hero-image-container img {
-            width: 110%;
-            border-radius: 60px 10px 60px 10px;
-            box-shadow: 30px 30px 80px rgba(0,0,0,0.1);
-            transform: rotate(2deg);
+        .hero-image-wrap img {
+            width: 100%;
+            border-radius: 80px 15px 80px 15px;
+            box-shadow: 40px 40px 100px rgba(0,0,0,0.12);
+            transform: rotate(3deg);
             transition: var(--transition);
         }
 
-        .hero-image-container:hover img {
-            transform: rotate(0deg) scale(1.02);
+        .hero-image-wrap:hover img {
+            transform: rotate(0deg) scale(1.03);
         }
 
-        .floating-card {
-            position: absolute;
-            bottom: -20px;
-            left: -40px;
-            background: white;
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.5);
+        /* Seção Sobre Mim (Nova & Premium) */
+        .about-section {
+            padding: 140px 0;
+            background: #fff;
+            position: relative;
+        }
+
+        .about-img-stack {
+            position: relative;
+            height: 500px;
+        }
+
+        .about-img-main {
+            width: 80%;
+            border-radius: 30px;
+            box-shadow: 20px 20px 60px rgba(0,0,0,0.1);
+            position: relative;
             z-index: 2;
         }
 
-        /* Botões Premium */
+        .about-img-sub {
+            width: 60%;
+            position: absolute;
+            bottom: -30px;
+            right: 0;
+            border-radius: 20px;
+            border: 10px solid #fff;
+            box-shadow: 10px 10px 40px rgba(0,0,0,0.08);
+            z-index: 3;
+        }
+
+        .about-content {
+            padding-left: 60px;
+        }
+
+        .accent-line {
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            margin-bottom: 25px;
+        }
+
+        /* Cards de Serviços */
+        .services {
+            padding: 120px 0;
+        }
+
+        .service-card {
+            background: white;
+            padding: 50px;
+            border-radius: 40px;
+            border: 1px solid rgba(0,0,0,0.03);
+            transition: var(--transition);
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--accent);
+            box-shadow: 0 40px 80px rgba(91, 138, 130, 0.1);
+        }
+
+        .card-idx {
+            font-size: 6rem;
+            font-weight: 900;
+            position: absolute;
+            top: -20px;
+            right: 10px;
+            opacity: 0.04;
+            color: var(--primary);
+        }
+
+        /* Botões */
         .btn-premium {
-            padding: 22px 48px;
+            padding: 22px 50px;
             background: var(--primary);
             color: white;
             border-radius: 100px;
@@ -133,133 +183,39 @@
             display: inline-block;
             transition: var(--transition);
             border: none;
-            box-shadow: 0 15px 35px rgba(91, 138, 130, 0.3);
-            position: relative;
-            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(91, 138, 130, 0.25);
         }
 
         .btn-premium:hover {
             background: var(--primary-dark);
             transform: translateY(-5px);
-            box-shadow: 0 20px 45px rgba(70, 107, 101, 0.4);
             color: white;
+            box-shadow: 0 25px 50px rgba(70, 107, 101, 0.35);
         }
 
-        /* Seção de Benefícios Assimétrica */
-        .services {
-            padding: 120px 0;
-            background: white;
-            position: relative;
-        }
-
-        .service-card {
-            background: var(--bg-soft);
-            padding: 50px;
-            border-radius: 40px;
-            border: 1px solid transparent;
-            transition: var(--transition);
-            height: 100%;
-            position: relative;
-        }
-
-        .service-card:hover {
-            background: white;
-            border-color: var(--accent);
-            transform: translateY(-15px);
-            box-shadow: 0 40px 80px rgba(0,0,0,0.05);
-        }
-
-        .card-idx {
-            font-size: 5rem;
-            font-weight: 900;
-            position: absolute;
-            top: -10px;
-            right: 30px;
-            opacity: 0.05;
-            color: var(--primary);
-        }
-
-        /* Feature Section - Layers */
-        .feature-split {
-            padding: 140px 0;
-            background: var(--bg-soft);
-        }
-
-        .overlap-img {
-            border-radius: 40px;
-            width: 100%;
-            box-shadow: 0 50px 100px rgba(0,0,0,0.1);
-            position: relative;
-            z-index: 2;
-        }
-
-        .experience-box {
-            background: var(--primary-dark);
-            color: white;
-            padding: 60px;
-            border-radius: 40px;
-            margin-left: -100px;
-            margin-top: 50px;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Testimonials - Estilo Editorial */
-        .testimonials {
-            padding: 140px 0;
-            background: white;
-            text-align: center;
-        }
-
-        .quote-icon {
-            font-size: 4rem;
-            color: var(--accent);
-            margin-bottom: 20px;
-            display: block;
-            opacity: 0.4;
-        }
-
-        .testimonial-text {
-            font-size: 2.2rem;
-            font-weight: 600;
-            line-height: 1.3;
-            letter-spacing: -0.03em;
-            max-width: 900px;
-            margin: 0 auto 40px;
-        }
-
-        /* Final CTA - Impacto Máximo */
+        /* CTA Final */
         .cta-final {
             padding: 160px 0;
             background: var(--primary-dark);
             color: white;
             text-align: center;
+            border-radius: 80px 80px 0 0;
+            margin-top: -80px;
             position: relative;
-            overflow: hidden;
+            z-index: 4;
         }
 
-        .cta-final .blur-glow {
-            background: radial-gradient(circle, rgba(197, 163, 125, 0.2) 0%, transparent 70%);
-            bottom: -200px;
-            right: -100px;
-        }
-
-        /* Footer */
         footer {
-            padding: 80px 0 40px;
-            background: white;
-            border-top: 1px solid #eee;
+            padding: 100px 0 40px;
+            background: #fff;
         }
 
         @media (max-width: 991px) {
-            .hero { padding: 120px 0 60px; text-align: center; }
+            .about-content { padding-left: 15px; margin-top: 80px; }
+            .about-img-stack { height: auto; margin-bottom: 40px; }
+            .hero-image-wrap { padding-left: 0; margin-top: 50px; }
             .hero-title { font-size: 3.5rem; }
-            .hero-p { margin: 0 auto 40px; }
-            .hero-image-container { margin-top: 60px; }
-            .hero-image-container img { width: 100%; transform: rotate(0); }
-            .floating-card { display: none; }
-            .experience-box { margin-left: 0; margin-top: -40px; padding: 40px; }
-            .testimonial-text { font-size: 1.6rem; }
+            .cta-final { border-radius: 40px 40px 0 0; }
         }
     </style>
 </head>
@@ -269,27 +225,54 @@
         <div class="container">
             <a class="navbar-brand" href="#">Marina Silva</a>
             <div class="ms-auto">
-                <a href="#contato" class="btn btn-premium py-2 px-4" style="font-size: 0.8rem;">AGENDAR AGORA</a>
+                <a href="#contatos" class="btn-premium py-2 px-4" style="font-size: 0.8rem;">AGENDAR SESSÃO</a>
             </div>
         </div>
     </nav>
 
     <section class="hero">
-        <div class="blur-glow" style="top: -100px; left: -100px;"></div>
+        <div class="blur-glow" style="top: -100px; right: -100px;"></div>
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <span class="text-uppercase fw-bold mb-3 d-block" style="color: var(--accent); letter-spacing: 5px; font-size: 0.8rem;">Psicologia de Alta Performance</span>
-                    <h1 class="hero-title">Sua mente merece <span>equilíbrio</span> absoluto.</h1>
-                    <p class="hero-p">Atendimento clínico especializado para quem busca excelência emocional, clareza mental e a superação de ciclos de ansiedade e estresse.</p>
+                    <span class="text-uppercase fw-bold mb-3 d-block" style="color: var(--accent); letter-spacing: 5px; font-size: 0.8rem;">Psicologia Clínica Premium</span>
+                    <h1 class="hero-title">Onde há escuta, há <span>mudança</span>.</h1>
+                    <p class="lead text-muted mb-5">Uma abordagem acolhedora e especializada para reconstruir seu equilíbrio emocional e clareza mental.</p>
                     <a href="#contatos" class="btn-premium">Descobrir minha jornada</a>
                 </div>
                 <div class="col-lg-6">
-                    <div class="hero-image-container mt-lg-0 mt-5">
+                    <div class="hero-image-wrap">
                         <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=1000&q=80" alt="Dra. Marina Silva">
-                        <div class="floating-card">
-                            <h5 class="mb-0 fw-bold">+12 Anos</h5>
-                            <p class="mb-0 text-muted small">De experiência clínica</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="about-img-stack">
+                        <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80" class="about-img-main" alt="Dra. Marina Silva">
+                        <img src="https://images.unsplash.com/photo-1527137342181-19aab11a8ee8?auto=format&fit=crop&w=600&q=80" class="about-img-sub" alt="Consultório">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-content">
+                        <div class="accent-line"></div>
+                        <h2 class="display-5 fw-bold mb-4">Conheça a Profissional</h2>
+                        <p class="text-muted mb-4">Sou a Dra. Marina Silva, psicóloga com mais de 12 anos de experiência clínica dedicada ao cuidado da saúde mental. Minha trajetória é marcada pelo compromisso com uma escuta ética, humana e profundamente personalizada.</p>
+                        <p class="text-muted mb-4">Especialista em Terapia Cognitivo-Comportamental (TCC) e com sólida formação em Saúde Mental, atuo auxiliando adultos e adolescentes a ressignificarem suas dores e a construírem uma relação mais saudável com suas emoções e desejos.</p>
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <h6 class="fw-bold mb-1">CRP 06/00000</h6>
+                                <small class="text-muted d-block">Conselho Regional</small>
+                            </div>
+                            <div class="col-6">
+                                <h6 class="fw-bold mb-1">Mestre em Psicologia</h6>
+                                <small class="text-muted d-block">Formação Acadêmica</small>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -299,98 +282,65 @@
 
     <section class="services">
         <div class="container">
-            <div class="row mb-5 justify-content-between align-items-end">
-                <div class="col-lg-6">
-                    <h2 class="display-4 fw-bold mb-4" style="letter-spacing: -2px;">Pilares do Cuidado</h2>
-                </div>
-                <div class="col-lg-5">
-                    <p class="text-muted lead">Uma abordagem contemporânea focada em resultados reais e no bem-estar integral do indivíduo.</p>
+            <div class="row mb-5 text-center">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="display-4 fw-bold mb-3">Como posso te ajudar</h2>
+                    <p class="lead text-muted">Tratamentos focados na sua autonomia e evolução contínua.</p>
                 </div>
             </div>
             <div class="row g-4">
                 <div class="col-lg-4">
                     <div class="service-card">
                         <span class="card-idx">01</span>
-                        <h3 class="fw-bold mb-3">Gestão de Ansiedade</h3>
-                        <p class="text-muted">Protocolos clínicos para identificar gatilhos e construir resiliência emocional em cenários de alta pressão.</p>
+                        <h3 class="fw-bold mb-3">Ansiedade</h3>
+                        <p class="text-muted">Ferramentas para gerenciar crises, identificar gatilhos e retomar a paz no dia a dia.</p>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="service-card">
                         <span class="card-idx">02</span>
-                        <h3 class="fw-bold mb-3">Conexões Saudáveis</h3>
-                        <p class="text-muted">Desenvolvimento de inteligência interpessoal para transformar relacionamentos e comunicação.</p>
+                        <h3 class="fw-bold mb-3">Relacionamentos</h3>
+                        <p class="text-muted">Trabalhando a comunicação, limites e a inteligência emocional nas suas conexões.</p>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="service-card">
                         <span class="card-idx">03</span>
-                        <h3 class="fw-bold mb-3">Alta Performance</h3>
-                        <p class="text-muted">Otimização da saúde mental para potencializar virtudes, autoconhecimento e clareza de propósito.</p>
+                        <h3 class="fw-bold mb-3">Autoconhecimento</h3>
+                        <p class="text-muted">Um mergulho profundo para entender seus padrões e potencializar suas virtudes.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="feature-split">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-7">
-                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=80" class="overlap-img" alt="Consultório">
-                </div>
-                <div class="col-lg-6">
-                    <div class="experience-box">
-                        <h2 class="fw-bold mb-4">Um refúgio para sua evolução.</h2>
-                        <p class="mb-4 opacity-75">Meu espaço é desenhado para oferecer o máximo de privacidade e conforto, garantindo que sua única preocupação seja o seu processo de cura e evolução.</p>
-                        <p class="opacity-75">Seja presencial em Florianópolis ou online para o mundo, a entrega é baseada em absoluta ética e personalização.</p>
-                        <hr class="my-4 opacity-25">
-                        <div class="d-flex align-items-center">
-                            <span class="badge bg-light text-dark rounded-pill px-3 py-2 me-2">Terapia TCC</span>
-                            <span class="badge bg-light text-dark rounded-pill px-3 py-2">Foco em Resultados</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="testimonials">
-        <div class="container">
-            <span class="quote-icon">“</span>
-            <h2 class="testimonial-text">"A terapia transformou minha forma de encarar os desafios. Hoje me sinto muito mais segura e no controle das minhas emoções."</h2>
-            <div class="d-flex align-items-center justify-content-center">
-                <div class="text-start">
-                    <h6 class="mb-0 fw-bold text-uppercase" style="letter-spacing: 2px;">Fernanda Lima</h6>
-                    <small class="text-muted">São Paulo - SP</small>
-                </div>
-            </div>
+    <section class="py-5 bg-white">
+        <div class="container text-center py-5">
+            <h5 class="text-uppercase fw-bold mb-4" style="color: var(--accent); letter-spacing: 3px;">A voz de quem confia</h5>
+            <p class="display-6 fw-bold mb-4" style="max-width: 800px; margin: 0 auto; letter-spacing: -1px;">"A terapia transformou minha forma de encarar os desafios. Hoje me sinto muito mais segura e no controle das minhas emoções."</p>
+            <span class="fw-bold text-muted">— Fernanda Lima, São Paulo</span>
         </div>
     </section>
 
     <section class="cta-final" id="contatos">
-        <div class="blur-glow"></div>
+        <div class="blur-glow" style="bottom: -100px; left: -100px; opacity: 0.5;"></div>
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <h2 class="display-3 fw-bold mb-4">Dê o passo que muda tudo.</h2>
-                    <p class="lead mb-5 opacity-75">Estou à disposição para acolher suas questões e iniciar essa jornada de transformação ao seu lado.</p>
-                    <a href="#" class="btn-premium" style="background: var(--accent);">Agendar minha primeira sessão</a>
-                </div>
-            </div>
+            <h2 class="display-3 fw-bold mb-4">Pronta para o primeiro passo?</h2>
+            <p class="lead mb-5 opacity-75">Estou à disposição para acolher suas questões e iniciar essa jornada ao seu lado.</p>
+            <a href="#" class="btn-premium" style="background: var(--accent);">Falar agora pelo WhatsApp</a>
         </div>
     </section>
 
     <footer>
         <div class="container text-center">
             <div class="navbar-brand mb-4 d-block">Marina Silva</div>
-            <p class="text-muted small mb-0">Psicóloga Clínica | CRP 06/00000</p>
+            <p class="text-muted small">Psicóloga Clínica | CRP 06/00000</p>
             <div class="mt-4">
-                <a href="#" class="text-muted text-decoration-none mx-3 small">Início</a>
-                <a href="#" class="text-muted text-decoration-none mx-3 small">Sobre</a>
-                <a href="#" class="text-muted text-decoration-none mx-3 small">WhatsApp</a>
+                <a href="#" class="text-muted text-decoration-none mx-3 small">Privacidade</a>
+                <a href="#" class="text-muted text-decoration-none mx-3 small">Termos de Uso</a>
+                <a href="#" class="text-muted text-decoration-none mx-3 small">Instagram</a>
             </div>
-            <p class="mt-5 mb-0 text-muted" style="font-size: 0.7rem; opacity: 0.5;">© 2026 Todos os direitos reservados. Design Premium.</p>
+            <p class="mt-5 mb-0 text-muted" style="font-size: 0.7rem; opacity: 0.5;">© 2026 Dra. Marina Silva. Todos os direitos reservados.</p>
         </div>
     </footer>
 
