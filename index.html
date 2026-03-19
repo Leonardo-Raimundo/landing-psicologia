@@ -14,6 +14,9 @@
             --text-main: #2d3436;
             --text-muted: #636e72;
             --transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            
+            /* Fluid Spacing */
+            --section-padding: clamp(60px, 10vw, 140px);
         }
 
         body {
@@ -26,20 +29,20 @@
 
         .blur-glow {
             position: absolute;
-            width: 600px;
-            height: 600px;
+            width: clamp(300px, 50vw, 600px);
+            height: clamp(300px, 50vw, 600px);
             background: radial-gradient(circle, rgba(91, 138, 130, 0.12) 0%, rgba(253, 251, 249, 0) 70%);
             border-radius: 50%;
-            filter: blur(100px);
+            filter: blur(80px);
             z-index: -1;
         }
 
-        /* Navbar */
+        /* Navbar Dinâmica */
         .navbar {
             backdrop-filter: blur(15px);
             background: rgba(253, 251, 249, 0.8);
             border-bottom: 1px solid rgba(0,0,0,0.03);
-            padding: 20px 0;
+            padding: clamp(10px, 2vw, 20px) 0;
         }
 
         .navbar-brand {
@@ -47,34 +50,36 @@
             letter-spacing: 2px;
             text-transform: uppercase;
             color: var(--primary-dark) !important;
+            font-size: clamp(1rem, 4vw, 1.2rem);
         }
 
-        /* Hero */
+        /* Hero Responsivo */
         .hero {
-            padding: 180px 0 100px;
+            padding: clamp(120px, 15vh, 200px) 0 clamp(60px, 8vw, 100px);
             position: relative;
         }
 
         .hero-title {
-            font-size: clamp(3.2rem, 8vw, 5.5rem);
+            font-size: clamp(2.5rem, 8vw, 5.5rem);
             font-weight: 900;
-            line-height: 0.9;
-            margin-bottom: 30px;
-            letter-spacing: -0.05em;
+            line-height: 1;
+            margin-bottom: 25px;
+            letter-spacing: -0.04em;
         }
 
         .hero-title span {
             color: var(--primary);
             position: relative;
+            display: inline-block;
         }
 
         .hero-title span::after {
             content: '';
             position: absolute;
-            bottom: 15px;
+            bottom: 10%;
             left: 0;
-            width: 110%;
-            height: 15px;
+            width: 105%;
+            height: clamp(8px, 2vw, 15px);
             background: var(--accent);
             opacity: 0.15;
             z-index: -1;
@@ -83,72 +88,75 @@
 
         .hero-image-wrap {
             position: relative;
-            padding-left: 40px;
+            padding-left: 0;
+            margin-top: clamp(40px, 6vw, 0px);
+        }
+
+        @media (min-width: 992px) {
+            .hero-image-wrap { padding-left: 40px; }
         }
 
         .hero-image-wrap img {
             width: 100%;
-            border-radius: 80px 15px 80px 15px;
-            box-shadow: 40px 40px 100px rgba(0,0,0,0.12);
-            transform: rotate(3deg);
+            border-radius: clamp(40px, 8vw, 80px) 15px clamp(40px, 8vw, 80px) 15px;
+            box-shadow: 20px 20px 60px rgba(0,0,0,0.1);
+            transform: rotate(2deg);
             transition: var(--transition);
         }
 
-        .hero-image-wrap:hover img {
-            transform: rotate(0deg) scale(1.03);
-        }
-
-        /* Seção Sobre Mim (Nova & Premium) */
+        /* Sobre Mim - Pilha de Imagens Adaptável */
         .about-section {
-            padding: 140px 0;
+            padding: var(--section-padding) 0;
             background: #fff;
-            position: relative;
         }
 
         .about-img-stack {
             position: relative;
-            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 350px;
+        }
+
+        @media (min-width: 992px) {
+            .about-img-stack { height: 500px; display: block; }
         }
 
         .about-img-main {
-            width: 80%;
+            width: 85%;
             border-radius: 30px;
             box-shadow: 20px 20px 60px rgba(0,0,0,0.1);
-            position: relative;
             z-index: 2;
         }
 
         .about-img-sub {
-            width: 60%;
+            width: 55%;
             position: absolute;
-            bottom: -30px;
+            bottom: -20px;
             right: 0;
             border-radius: 20px;
-            border: 10px solid #fff;
+            border: clamp(5px, 1.5vw, 10px) solid #fff;
             box-shadow: 10px 10px 40px rgba(0,0,0,0.08);
             z-index: 3;
         }
 
         .about-content {
-            padding-left: 60px;
+            padding-top: clamp(40px, 6vw, 0px);
         }
 
-        .accent-line {
-            width: 60px;
-            height: 4px;
-            background: var(--accent);
-            margin-bottom: 25px;
+        @media (min-width: 992px) {
+            .about-content { padding-left: 60px; }
         }
 
-        /* Cards de Serviços */
+        /* Cards de Serviços Dinâmicos */
         .services {
-            padding: 120px 0;
+            padding: var(--section-padding) 0;
         }
 
         .service-card {
             background: white;
-            padding: 50px;
-            border-radius: 40px;
+            padding: clamp(30px, 5vw, 50px);
+            border-radius: 30px;
             border: 1px solid rgba(0,0,0,0.03);
             transition: var(--transition);
             height: 100%;
@@ -156,17 +164,11 @@
             overflow: hidden;
         }
 
-        .service-card:hover {
-            transform: translateY(-15px);
-            border-color: var(--accent);
-            box-shadow: 0 40px 80px rgba(91, 138, 130, 0.1);
-        }
-
         .card-idx {
-            font-size: 6rem;
+            font-size: clamp(4rem, 10vw, 6rem);
             font-weight: 900;
             position: absolute;
-            top: -20px;
+            top: -10px;
             right: 10px;
             opacity: 0.04;
             color: var(--primary);
@@ -174,48 +176,52 @@
 
         /* Botões */
         .btn-premium {
-            padding: 22px 50px;
+            padding: clamp(15px, 2vw, 22px) clamp(30px, 4vw, 50px);
             background: var(--primary);
-            color: white;
+            color: white !important;
             border-radius: 100px;
             font-weight: 700;
             text-decoration: none;
             display: inline-block;
             transition: var(--transition);
-            border: none;
-            box-shadow: 0 20px 40px rgba(91, 138, 130, 0.25);
+            box-shadow: 0 15px 35px rgba(91, 138, 130, 0.2);
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
         }
 
         .btn-premium:hover {
-            background: var(--primary-dark);
             transform: translateY(-5px);
-            color: white;
-            box-shadow: 0 25px 50px rgba(70, 107, 101, 0.35);
+            background: var(--primary-dark);
+            box-shadow: 0 20px 45px rgba(70, 107, 101, 0.35);
+        }
+
+        /* Testimonials */
+        .testimonial-text {
+            font-size: clamp(1.2rem, 4vw, 2.2rem);
+            font-weight: 600;
+            line-height: 1.3;
+            max-width: 900px;
+            margin: 0 auto 30px;
         }
 
         /* CTA Final */
         .cta-final {
-            padding: 160px 0;
+            padding: var(--section-padding) 0;
             background: var(--primary-dark);
             color: white;
             text-align: center;
-            border-radius: 80px 80px 0 0;
-            margin-top: -80px;
+            border-radius: clamp(40px, 8vw, 80px) clamp(40px, 8vw, 80px) 0 0;
+            margin-top: -40px;
             position: relative;
             z-index: 4;
         }
 
-        footer {
-            padding: 100px 0 40px;
-            background: #fff;
-        }
-
+        /* Utilitários de visibilidade mobile */
         @media (max-width: 991px) {
-            .about-content { padding-left: 15px; margin-top: 80px; }
-            .about-img-stack { height: auto; margin-bottom: 40px; }
-            .hero-image-wrap { padding-left: 0; margin-top: 50px; }
-            .hero-title { font-size: 3.5rem; }
-            .cta-final { border-radius: 40px 40px 0 0; }
+            .hero-title span::after { width: 100%; height: 8px; bottom: 5px; }
+            .hero-image-wrap img { transform: rotate(0deg); border-radius: 40px 10px; }
+            .about-img-main { width: 95%; }
+            .about-img-sub { width: 50%; right: 5%; bottom: -10px; }
+            .text-md-center { text-align: center; }
         }
     </style>
 </head>
@@ -225,19 +231,19 @@
         <div class="container">
             <a class="navbar-brand" href="#">Marina Silva</a>
             <div class="ms-auto">
-                <a href="#contatos" class="btn-premium py-2 px-4" style="font-size: 0.8rem;">AGENDAR SESSÃO</a>
+                <a href="#contatos" class="btn-premium py-2 px-3 py-md-2 px-md-4" style="font-size: 0.75rem;">AGENDAR SESSÃO</a>
             </div>
         </div>
     </nav>
 
     <section class="hero">
-        <div class="blur-glow" style="top: -100px; right: -100px;"></div>
+        <div class="blur-glow" style="top: -10vh; right: -10vw;"></div>
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <span class="text-uppercase fw-bold mb-3 d-block" style="color: var(--accent); letter-spacing: 5px; font-size: 0.8rem;">Psicologia Clínica Premium</span>
+                <div class="col-lg-6 text-center text-lg-start">
+                    <span class="text-uppercase fw-bold mb-3 d-block" style="color: var(--accent); letter-spacing: 3px; font-size: 0.75rem;">Psicologia Clínica Premium</span>
                     <h1 class="hero-title">Onde há escuta, há <span>mudança</span>.</h1>
-                    <p class="lead text-muted mb-5">Uma abordagem acolhedora e especializada para reconstruir seu equilíbrio emocional e clareza mental.</p>
+                    <p class="lead text-muted mb-5 px-3 px-lg-0">Uma abordagem acolhedora e especializada para reconstruir seu equilíbrio emocional e clareza mental.</p>
                     <a href="#contatos" class="btn-premium">Descobrir minha jornada</a>
                 </div>
                 <div class="col-lg-6">
@@ -252,26 +258,26 @@
     <section class="about-section">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-6">
+                <div class="col-lg-6 order-2 order-lg-1">
                     <div class="about-img-stack">
                         <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80" class="about-img-main" alt="Dra. Marina Silva">
                         <img src="https://images.unsplash.com/photo-1527137342181-19aab11a8ee8?auto=format&fit=crop&w=600&q=80" class="about-img-sub" alt="Consultório">
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="about-content">
-                        <div class="accent-line"></div>
+                <div class="col-lg-6 order-1 order-lg-2">
+                    <div class="about-content text-center text-lg-start">
+                        <div class="accent-line d-none d-lg-block" style="width: 60px; height: 4px; background: var(--accent); margin-bottom: 25px;"></div>
                         <h2 class="display-5 fw-bold mb-4">Conheça a Profissional</h2>
-                        <p class="text-muted mb-4">Sou a Dra. Marina Silva, psicóloga com mais de 12 anos de experiência clínica dedicada ao cuidado da saúde mental. Minha trajetória é marcada pelo compromisso com uma escuta ética, humana e profundamente personalizada.</p>
-                        <p class="text-muted mb-4">Especialista em Terapia Cognitivo-Comportamental (TCC) e com sólida formação em Saúde Mental, atuo auxiliando adultos e adolescentes a ressignificarem suas dores e a construírem uma relação mais saudável com suas emoções e desejos.</p>
-                        <div class="row g-3">
+                        <p class="text-muted mb-4">Sou a Dra. Marina Silva, psicóloga com mais de 12 anos de experiência clínica dedicada ao cuidado da saúde mental. Minha trajetória é marcada pelo compromisso com uma escuta ética e humana.</p>
+                        <p class="text-muted mb-4">Especialista em Terapia Cognitivo-Comportamental (TCC), atuo auxiliando adultos e adolescentes a ressignificarem suas dores.</p>
+                        <div class="row g-3 mb-5">
                             <div class="col-6">
                                 <h6 class="fw-bold mb-1">CRP 06/00000</h6>
-                                <small class="text-muted d-block">Conselho Regional</small>
+                                <small class="text-muted">Conselho Regional</small>
                             </div>
                             <div class="col-6">
-                                <h6 class="fw-bold mb-1">Mestre em Psicologia</h6>
-                                <small class="text-muted d-block">Formação Acadêmica</small>
+                                <h6 class="fw-bold mb-1">Mestra em Psicologia</h6>
+                                <small class="text-muted">Formação Acadêmica</small>
                             </div>
                         </div>
                     </div>
@@ -289,25 +295,25 @@
                 </div>
             </div>
             <div class="row g-4">
-                <div class="col-lg-4">
+                <div class="col-md-6 col-lg-4">
                     <div class="service-card">
                         <span class="card-idx">01</span>
-                        <h3 class="fw-bold mb-3">Ansiedade</h3>
-                        <p class="text-muted">Ferramentas para gerenciar crises, identificar gatilhos e retomar a paz no dia a dia.</p>
+                        <h3 class="fw-bold h4 mb-3">Ansiedade</h3>
+                        <p class="text-muted mb-0">Ferramentas para gerenciar crises, identificar gatilhos e retomar a paz no dia a dia.</p>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-md-6 col-lg-4">
                     <div class="service-card">
                         <span class="card-idx">02</span>
-                        <h3 class="fw-bold mb-3">Relacionamentos</h3>
-                        <p class="text-muted">Trabalhando a comunicação, limites e a inteligência emocional nas suas conexões.</p>
+                        <h3 class="fw-bold h4 mb-3">Relacionamentos</h3>
+                        <p class="text-muted mb-0">Trabalhando a comunicação, limites e a inteligência emocional nas suas conexões.</p>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-md-6 col-lg-4 mx-auto">
                     <div class="service-card">
                         <span class="card-idx">03</span>
-                        <h3 class="fw-bold mb-3">Autoconhecimento</h3>
-                        <p class="text-muted">Um mergulho profundo para entender seus padrões e potencializar suas virtudes.</p>
+                        <h3 class="fw-bold h4 mb-3">Autoconhecimento</h3>
+                        <p class="text-muted mb-0">Um mergulho profundo para entender seus padrões e potencializar suas virtudes.</p>
                     </div>
                 </div>
             </div>
@@ -316,29 +322,31 @@
 
     <section class="py-5 bg-white">
         <div class="container text-center py-5">
-            <h5 class="text-uppercase fw-bold mb-4" style="color: var(--accent); letter-spacing: 3px;">A voz de quem confia</h5>
-            <p class="display-6 fw-bold mb-4" style="max-width: 800px; margin: 0 auto; letter-spacing: -1px;">"A terapia transformou minha forma de encarar os desafios. Hoje me sinto muito mais segura e no controle das minhas emoções."</p>
-            <span class="fw-bold text-muted">— Fernanda Lima, São Paulo</span>
+            <p class="testimonial-text">"A terapia transformou minha forma de encarar os desafios. Hoje me sinto muito mais segura e no controle das minhas emoções."</p>
+            <span class="fw-bold text-muted text-uppercase small" style="letter-spacing: 2px;">— Fernanda Lima, São Paulo</span>
         </div>
     </section>
 
     <section class="cta-final" id="contatos">
-        <div class="blur-glow" style="bottom: -100px; left: -100px; opacity: 0.5;"></div>
         <div class="container">
-            <h2 class="display-3 fw-bold mb-4">Pronta para o primeiro passo?</h2>
-            <p class="lead mb-5 opacity-75">Estou à disposição para acolher suas questões e iniciar essa jornada ao seu lado.</p>
-            <a href="#" class="btn-premium" style="background: var(--accent);">Falar agora pelo WhatsApp</a>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h2 class="display-4 fw-bold mb-4">Pronta para o primeiro passo?</h2>
+                    <p class="lead mb-5 opacity-75">Estou à disposição para acolher suas questões e iniciar essa jornada ao seu lado.</p>
+                    <a href="#" class="btn-premium" style="background: var(--accent); box-shadow: 0 15px 35px rgba(197, 163, 125, 0.3);">Falar agora pelo WhatsApp</a>
+                </div>
+            </div>
         </div>
     </section>
 
     <footer>
         <div class="container text-center">
             <div class="navbar-brand mb-4 d-block">Marina Silva</div>
-            <p class="text-muted small">Psicóloga Clínica | CRP 06/00000</p>
-            <div class="mt-4">
-                <a href="#" class="text-muted text-decoration-none mx-3 small">Privacidade</a>
-                <a href="#" class="text-muted text-decoration-none mx-3 small">Termos de Uso</a>
-                <a href="#" class="text-muted text-decoration-none mx-3 small">Instagram</a>
+            <p class="text-muted small mb-0">Psicóloga Clínica | CRP 06/00000</p>
+            <div class="mt-4 d-flex justify-content-center flex-wrap gap-3">
+                <a href="#" class="text-muted text-decoration-none small">Privacidade</a>
+                <a href="#" class="text-muted text-decoration-none small">Instagram</a>
+                <a href="#" class="text-muted text-decoration-none small">LinkedIn</a>
             </div>
             <p class="mt-5 mb-0 text-muted" style="font-size: 0.7rem; opacity: 0.5;">© 2026 Dra. Marina Silva. Todos os direitos reservados.</p>
         </div>
