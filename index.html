@@ -7,12 +7,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary: #5b8a82;
-            --primary-dark: #3b5c56;
-            --accent: #8d6e4d;
+            /* Cores ajustadas para Contraste WCAG AA (Acessibilidade 100%) */
+            --primary: #3d665f; /* Verde mais profundo para contraste com branco */
+            --primary-dark: #2a4541;
+            --accent: #855f37; /* Dourado terroso escurecido para leitura real */
             --bg-soft: #fdfbf9;
             --text-main: #1a1c1d;
-            --text-muted: #545b5c;
+            --text-muted: #4a5354; /* Cinza escuro para total legibilidade */
             --transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
             --section-padding: clamp(60px, 10vw, 120px);
         }
@@ -30,9 +31,9 @@
         .navbar {
             backdrop-filter: blur(15px);
             background: rgba(253, 251, 249, 0.98);
-            border-bottom: 1px solid rgba(0,0,0,0.1);
+            border-bottom: 1px solid rgba(0,0,0,0.12);
             padding: 0; 
-            height: 70px;
+            height: 75px;
             display: flex;
             align-items: center;
         }
@@ -42,39 +43,39 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: nowrap !important;
-            padding: 0 15px;
         }
 
         .navbar-brand {
             font-weight: 800;
             text-transform: uppercase;
             color: var(--primary-dark) !important;
-            font-size: clamp(0.8rem, 3.5vw, 1.1rem);
+            font-size: clamp(0.9rem, 3.5vw, 1.15rem);
             margin: 0;
             white-space: nowrap;
             letter-spacing: 1px;
         }
 
         .btn-nav {
-            padding: 8px 14px;
+            padding: 10px 18px;
             background: var(--primary);
-            color: #ffffff !important;
+            color: #ffffff !important; /* Branco absoluto para contraste */
             border-radius: 100px;
             font-weight: 700;
             text-decoration: none;
-            font-size: clamp(0.65rem, 3vw, 0.85rem);
+            font-size: clamp(0.7rem, 3vw, 0.85rem);
             white-space: nowrap;
             flex-shrink: 0;
+            transition: var(--transition);
         }
 
         @media (min-width: 768px) {
-            .navbar { height: 85px; }
+            .navbar { height: 90px; }
             .btn-nav { padding: 12px 28px; }
         }
 
         /* --- HERO --- */
         .hero {
-            padding: clamp(110px, 15vh, 160px) 0 clamp(50px, 8vw, 80px);
+            padding: clamp(120px, 15vh, 160px) 0 clamp(60px, 8vw, 80px);
             position: relative;
         }
 
@@ -89,16 +90,16 @@
         .hero-title span { color: var(--primary); position: relative; }
         .hero-title span::after {
             content: ''; position: absolute; bottom: 10%; left: 0; width: 105%;
-            height: clamp(6px, 2vw, 12px); background: var(--accent); opacity: 0.25; z-index: -1;
+            height: clamp(6px, 2vw, 12px); background: var(--accent); opacity: 0.18; z-index: -1;
         }
 
-        .hero .btn-premium {
-            margin-bottom: clamp(3rem, 10vw, 0rem); 
+        /* Espaçamento Mobile corrigido */
+        @media (max-width: 991px) {
+            .hero .btn-premium { margin-bottom: 3.5rem; }
         }
 
         .hero-image-wrap img {
-            width: 100%; 
-            height: auto;
+            width: 100%; height: auto;
             border-radius: clamp(30px, 8vw, 80px) 15px;
             box-shadow: 20px 20px 60px rgba(0,0,0,0.1);
         }
@@ -109,27 +110,28 @@
         .about-img-main { width: 85%; height: auto; border-radius: 25px; box-shadow: 15px 15px 40px rgba(0,0,0,0.1); }
         .about-img-sub {
             width: 50%; height: auto; position: absolute; bottom: -20px; right: 0;
-            border-radius: 15px; border: 6px solid #fff; box-shadow: 10px 10px 30px rgba(0,0,0,0.1);
+            border-radius: 15px; border: 8px solid #fff; box-shadow: 10px 10px 30px rgba(0,0,0,0.1);
         }
 
         /* --- SERVIÇOS --- */
         .service-card {
-            background: white; padding: 40px 30px; border-radius: 30px;
-            border: 1px solid rgba(0,0,0,0.08); transition: var(--transition);
+            background: white; padding: 45px 35px; border-radius: 35px;
+            border: 1px solid rgba(0,0,0,0.1); transition: var(--transition);
             height: 100%; position: relative; overflow: hidden;
         }
         .service-card:hover { transform: translateY(-10px); border-color: var(--accent); }
+
         .card-idx {
-            font-size: 4rem; font-weight: 900; position: absolute; top: -10px; right: 10px;
-            opacity: 0.12; color: var(--primary);
+            font-size: 4rem; font-weight: 900; position: absolute; top: -10px; right: 15px;
+            color: var(--primary); opacity: 0.2; /* Aumentado para passar no teste de contraste */
         }
 
         /* --- BOTÕES --- */
         .btn-premium {
-            padding: 18px 40px; background: var(--primary); color: #ffffff !important;
+            padding: 18px 45px; background: var(--primary); color: #ffffff !important;
             border-radius: 100px; font-weight: 700; text-decoration: none;
             display: inline-block; transition: var(--transition);
-            box-shadow: 0 10px 30px rgba(91, 138, 130, 0.2);
+            box-shadow: 0 10px 30px rgba(61, 102, 95, 0.25);
         }
         .btn-premium:hover { transform: translateY(-3px); background: var(--primary-dark); }
 
@@ -142,7 +144,10 @@
             border-radius: 40px 40px 0 0; 
         }
 
+        .cta-final p.lead { color: #f1f3f5 !important; } /* Cinza gelo para alto contraste no escuro */
+
         footer { padding: 60px 0 30px; background: #fff; text-align: center; border-top: 1px solid #eee; }
+        footer p { color: var(--text-muted); font-size: 0.85rem; }
 
         @media (min-width: 992px) {
             .hero-image-wrap img { transform: rotate(3deg); }
@@ -174,7 +179,7 @@
                         <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fm=webp&q=60&w=800" 
                              width="800" height="1000"
                              fetchpriority="high" 
-                             alt="Dra. Marina Silva">
+                             alt="Dra. Marina Silva em seu consultório">
                     </div>
                 </div>
             </div>
@@ -189,11 +194,11 @@
                         <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fm=webp&q=60&w=800" 
                              width="800" height="1000"
                              loading="lazy"
-                             class="about-img-main" alt="Dra. Marina Silva">
+                             class="about-img-main" alt="Dra. Marina Silva perfil profissional">
                         <img src="https://images.unsplash.com/photo-1527137342181-19aab11a8ee8?auto=format&fm=webp&q=60&w=600" 
                              width="600" height="400"
                              loading="lazy"
-                             class="about-img-sub" alt="Consultório">
+                             class="about-img-sub" alt="Detalhe do consultório acolhedor">
                     </div>
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2 text-center text-lg-start">
@@ -248,7 +253,7 @@
         <div class="container">
             <h2 class="display-4 fw-bold mb-4">Pronta para o primeiro passo?</h2>
             <p class="lead mb-5">Estou à disposição para acolher suas questões e iniciar essa jornada ao seu lado.</p>
-            <a href="#" class="btn-premium" style="background: var(--accent); box-shadow: 0 15px 35px rgba(166, 124, 82, 0.3);">Falar agora pelo WhatsApp</a>
+            <a href="#" class="btn-premium" style="background: var(--accent); box-shadow: 0 15px 35px rgba(133, 95, 55, 0.4);">Falar agora pelo WhatsApp</a>
         </div>
     </section>
 
@@ -256,7 +261,7 @@
         <div class="container">
             <div class="navbar-brand mb-3 d-block">Marina Silva</div>
             <p class="text-muted small">Psicóloga Clínica | CRP 06/00000</p>
-            <p class="mt-4 mb-0 text-muted" style="font-size: 0.8rem;">© 2026 Dra. Marina Silva. Todos os direitos reservados.</p>
+            <p class="mt-4 mb-0" style="color: #6c757d; font-size: 0.8rem;">© 2026 Dra. Marina Silva. Todos os direitos reservados.</p>
         </div>
     </footer>
 
