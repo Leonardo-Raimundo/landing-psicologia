@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equilíbrio & Mente | Psicologia Clínica Especializada</title>
+    <style>
+        :root {
+            /* Palette: Soft Teal & Warm Earth */
+            --primary: #5b8a82;
+            --primary-dark: #466b65;
+            --accent: #d4a373;
+            --bg-light: #fefae0;
+            --bg-white: #ffffff;
+            --text-main: #2d3436;
+            --text-muted: #636e72;
+            --radius: 12px;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            
+            /* Typography Fluid */
+            --fs-h1: clamp(2rem, 5vw, 3.5rem);
+            --fs-h2: clamp(1.5rem, 4vw, 2.5rem);
+            --fs-body: clamp(1rem, 2vw, 1.125rem);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--bg-white);
+            scroll-behavior: smooth;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            border-radius: var(--radius);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Reusable Components */
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.2s, background 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--bg-light) 0%, #ffffff 100%);
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: var(--fs-h1);
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: var(--primary-dark);
+        }
+
+        .hero-content p {
+            font-size: var(--fs-body);
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            max-width: 500px;
+        }
+
+        /* Benefits / Cards */
+        .section-title {
+            text-align: center;
+            font-size: var(--fs-h2);
+            margin-bottom: 48px;
+            color: var(--primary-dark);
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+
+        .card {
+            padding: 40px;
+            background: var(--bg-white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: border 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .card:hover {
+            border-color: var(--primary);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .card h3 {
+            margin-bottom: 16px;
+            color: var(--primary);
+        }
+
+        /* Feature Section */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .feature-image {
+            order: 2;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background-color: var(--bg-light);
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 32px;
+            border-radius: var(--radius);
+            font-style: italic;
+            position: relative;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+            font-style: normal;
+        }
+
+        .user-info img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+
+        /* Final CTA */
+        .cta-final {
+            text-align: center;
+            background: var(--primary-dark);
+            color: white;
+            padding: 100px 24px;
+        }
+
+        .cta-final h2 {
+            margin-bottom: 24px;
+        }
+
+        .cta-final .btn {
+            background-color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid #eee;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-top: 16px;
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        /* Responsiveness */
+        @media (min-width: 992px) {
+            .hero-grid { grid-template-columns: 1.2fr 0.8fr; }
+            .feature-grid { grid-template-columns: 1fr 1fr; }
+            .feature-image { order: unset; }
+            .feature-grid.reverse .feature-content { order: 2; }
+            .feature-grid.reverse .feature-image { order: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h1>Reencontre sua paz e equilíbrio emocional.</h1>
+                    <p>Atendimento psicoterapêutico acolhedor e especializado para ajudar você a superar ansiedade, estresse e desafios da vida moderna.</p>
+                    <a href="#contato" class="btn">Agendar Sessão de Avaliação</a>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=80" alt="Psicóloga sorrindo em um ambiente acolhedor">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="beneficios">
+        <div class="container">
+            <h2 class="section-title">Como posso te ajudar</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <span class="card-icon">🌿</span>
+                    <h3>Ansiedade</h3>
+                    <p>Técnicas comprovadas para gerenciar crises e retomar o controle da sua rotina.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">🤝</span>
+                    <h3>Relacionamentos</h3>
+                    <p>Desenvolva inteligência emocional para construir conexões mais saudáveis.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">🎯</span>
+                    <h3>Autoconhecimento</h3>
+                    <p>Entenda seus padrões de comportamento e potencialize suas virtudes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="feature">
+        <div class="container">
+            <div class="feature-grid">
+                <div class="feature-image">
+                    <img src="https://images.unsplash.com/photo-1527137342181-19aab11a8ee8?auto=format&fit=crop&w=800&q=80" alt="Consultório confortável">
+                </div>
+                <div class="feature-content">
+                    <h2 class="section-title" style="text-align: left;">Um espaço seguro para ser você mesma.</h2>
+                    <p style="margin-bottom: 20px; color: var(--text-muted);">Minha abordagem clínica é baseada na Ética e na Terapia Cognitivo-Comportamental, focada em resultados práticos sem perder a humanização do atendimento.</p>
+                    <p style="color: var(--text-muted);">As sessões são realizadas em ambiente online ou presencial, garantindo total sigilo e conforto para sua jornada de cura.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Depoimentos</h2>
+            <div class="grid-3">
+                <div class="testimonial-card">
+                    <p>"A terapia mudou minha forma de encarar o trabalho. Hoje me sinto muito mais segura e menos ansiosa."</p>
+                    <div class="user-info">
+                        <img src="https://i.pravatar.cc/150?u=1" alt="Paciente">
+                        <span>Fernanda Lima</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Excelente profissional. O acolhimento desde a primeira sessão foi fundamental para minha recuperação."</p>
+                    <div class="user-info">
+                        <img src="https://i.pravatar.cc/150?u=2" alt="Paciente">
+                        <span>Ricardo Gomes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-final" id="contato">
+        <div class="container">
+            <h2>Dê o primeiro passo para sua saúde mental.</h2>
+            <p style="margin-bottom: 32px; opacity: 0.9;">Clique no botão abaixo e fale diretamente comigo pelo WhatsApp para tirar suas dúvidas.</p>
+            <a href="#" class="btn">Quero Iniciar Minha Terapia</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p><strong>Dra. Marina Silva</strong> | Psicóloga Clínica CRP 00/00000</p>
+            <ul class="footer-links">
+                <li><a href="#">Início</a></li>
+                <li><a href="#beneficios">Serviços</a></li>
+                <li><a href="#contato">Contato</a></li>
+                <li><a href="#">Privacidade</a></li>
+            </ul>
+            <p style="margin-top: 24px; font-size: 0.8rem; color: var(--text-muted);">© 2026 Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
