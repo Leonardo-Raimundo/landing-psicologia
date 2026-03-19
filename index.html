@@ -14,10 +14,23 @@
             --bg-soft: #fdfbf9;
             --text-main: #1a1c1d;
             --text-muted: #4a5354;
-            --card-idx-color: #8ba19d; /* Cor sólida para passar no contraste sem usar opacity */
+            --card-idx-color: #8ba19d;
             --transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
             --section-padding: clamp(60px, 10vw, 120px);
         }
+
+        /* Acessibilidade: Link de salto para teclado */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary);
+            color: white;
+            padding: 8px;
+            z-index: 10001;
+            transition: top 0.3s;
+        }
+        .skip-link:focus { top: 0; }
 
         body {
             font-family: 'Inter', -apple-system, sans-serif;
@@ -28,7 +41,9 @@
             line-height: 1.6;
         }
 
-        /* --- HEADER --- */
+        /* --- HEADER & NAVBAR --- */
+        header { width: 100%; }
+        
         .navbar {
             backdrop-filter: blur(15px);
             background: rgba(253, 251, 249, 0.98);
@@ -112,12 +127,12 @@
             border-radius: 15px; border: 8px solid #fff; box-shadow: 10px 10px 30px rgba(0,0,0,0.1);
         }
 
-        /* --- SERVIÇOS (CARDS COM CONTRASTE AJUSTADO) --- */
+        /* --- SERVIÇOS --- */
         .service-card {
             background: white; 
             padding: 45px 35px; 
             border-radius: 35px;
-            border: 1px solid rgba(0,0,0,0.15); /* Borda mais visível */
+            border: 1px solid rgba(0,0,0,0.15);
             transition: var(--transition);
             height: 100%; 
             position: relative; 
@@ -127,7 +142,6 @@
         .service-card:hover { 
             transform: translateY(-10px); 
             border-color: var(--accent); 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
         }
 
         .card-idx {
@@ -136,14 +150,8 @@
             position: absolute; 
             top: -10px; 
             right: 15px;
-            color: var(--card-idx-color); /* Cor sólida para passar no Lighthouse */
-            opacity: 1; /* Removida opacidade para garantir cálculo de contraste */
-        }
-
-        .service-card h4 {
-            color: var(--primary-dark);
-            position: relative;
-            z-index: 2;
+            color: var(--card-idx-color);
+            opacity: 1;
         }
 
         /* --- BOTÕES --- */
@@ -177,104 +185,110 @@
 </head>
 <body>
 
-    <nav class="navbar fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">Marina Silva</a>
-            <a href="#contatos" class="btn-nav">AGENDAR SESSÃO</a>
-        </div>
-    </nav>
+    <a class="skip-link" href="#main-content">Pular para o conteúdo principal</a>
 
-    <section class="hero">
-        <div class="container text-center text-lg-start">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <span class="text-uppercase fw-bold mb-3 d-block" style="color: var(--accent); letter-spacing: 3px; font-size: 0.75rem;">Psicologia Clínica Premium</span>
-                    <h1 class="hero-title">Onde há escuta, há <span>mudança</span>.</h1>
-                    <p class="lead text-muted mb-5">Uma abordagem acolhedora e especializada para reconstruir seu equilíbrio emocional e clareza mental.</p>
-                    <a href="#contatos" class="btn-premium">Descobrir minha jornada</a>
-                </div>
-                <div class="col-lg-6">
-                    <div class="hero-image-wrap">
-                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fm=webp&q=60&w=800" 
-                             width="800" height="1000"
-                             fetchpriority="high" 
-                             alt="Dra. Marina Silva no consultório">
-                    </div>
-                </div>
+    <header>
+        <nav class="navbar fixed-top" aria-label="Navegação Principal">
+            <div class="container">
+                <a class="navbar-brand" href="#">Marina Silva</a>
+                <a href="#contatos" class="btn-nav">AGENDAR SESSÃO</a>
             </div>
-        </div>
-    </section>
+        </nav>
+    </header>
 
-    <section class="about-section">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 order-2 order-lg-1">
-                    <div class="about-img-stack">
-                        <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fm=webp&q=60&w=800" 
-                             width="800" height="1000"
-                             loading="lazy"
-                             class="about-img-main" alt="Dra. Marina Silva perfil">
-                        <img src="https://images.unsplash.com/photo-1527137342181-19aab11a8ee8?auto=format&fm=webp&q=60&w=600" 
-                             width="600" height="400"
-                             loading="lazy"
-                             class="about-img-sub" alt="Detalhe do consultório">
+    <main id="main-content">
+        <section class="hero">
+            <div class="container text-center text-lg-start">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <span class="text-uppercase fw-bold mb-3 d-block" style="color: var(--accent); letter-spacing: 3px; font-size: 0.75rem;">Psicologia Clínica Premium</span>
+                        <h1 class="hero-title">Onde há escuta, há <span>mudança</span>.</h1>
+                        <p class="lead text-muted mb-5">Uma abordagem acolhedora e especializada para reconstruir seu equilíbrio emocional e clareza mental.</p>
+                        <a href="#contatos" class="btn-premium">Descobrir minha jornada</a>
                     </div>
-                </div>
-                <div class="col-lg-6 order-1 order-lg-2 text-center text-lg-start">
-                    <h2 class="display-5 fw-bold mb-4">Conheça a Profissional</h2>
-                    <p class="text-muted mb-4">Sou a Dra. Marina Silva, psicóloga com mais de 12 anos de experiência clínica dedicada ao cuidado da saúde mental. Minha trajetória é marcada pelo compromisso com uma escuta ética, humana e profundamente personalizada.</p>
-                    <p class="text-muted mb-5">Especialista em Terapia Cognitivo-Comportamental (TCC) e com sólida formação em Saúde Mental, atuo auxiliando adultos e adolescentes a ressignificarem suas dores.</p>
-                    <div class="row g-3 mb-5">
-                        <div class="col-6">
-                            <h6 class="fw-bold mb-0">CRP 06/00000</h6>
-                            <small class="text-muted">Conselho Regional</small>
-                        </div>
-                        <div class="col-6">
-                            <h6 class="fw-bold mb-0">Mestre em Psicologia</h6>
-                            <small class="text-muted">Formação Acadêmica</small>
+                    <div class="col-lg-6">
+                        <div class="hero-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fm=webp&q=60&w=800" 
+                                 width="800" height="1000"
+                                 fetchpriority="high" 
+                                 alt="Dra. Marina Silva no consultório">
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="services">
-        <div class="container">
-            <h2 class="display-5 fw-bold text-center mb-5">Como posso te ajudar</h2>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-4">
-                    <div class="service-card">
-                        <span class="card-idx">01</span>
-                        <h4 class="fw-bold mb-3">Ansiedade</h4>
-                        <p class="text-muted mb-0">Ferramentas para gerenciar crises, identificar gatilhos e retomar a paz no dia a dia.</p>
+        <section class="about-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 order-2 order-lg-1">
+                        <div class="about-img-stack">
+                            <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fm=webp&q=60&w=800" 
+                                 width="800" height="1000"
+                                 loading="lazy"
+                                 class="about-img-main" alt="Dra. Marina Silva perfil profissional">
+                            <img src="https://images.unsplash.com/photo-1527137342181-19aab11a8ee8?auto=format&fm=webp&q=60&w=600" 
+                                 width="600" height="400"
+                                 loading="lazy"
+                                 class="about-img-sub" alt="Detalhe do consultório">
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="service-card">
-                        <span class="card-idx">02</span>
-                        <h4 class="fw-bold mb-3">Relacionamentos</h4>
-                        <p class="text-muted mb-0">Trabalhando a comunicação, limites e a inteligência emocional nas suas conexões.</p>
-                    </div>
-                </div>
-                <div class="col-md-12 col-lg-4">
-                    <div class="service-card">
-                        <span class="card-idx">03</span>
-                        <h4 class="fw-bold mb-3">Autoconhecimento</h4>
-                        <p class="text-muted mb-0">Um mergulho profundo para entender seus padrões e potencializar suas virtudes.</p>
+                    <div class="col-lg-6 order-1 order-lg-2 text-center text-lg-start">
+                        <h2 class="display-5 fw-bold mb-4">Conheça a Profissional</h2>
+                        <p class="text-muted mb-4">Sou a Dra. Marina Silva, psicóloga com mais de 12 anos de experiência clínica dedicada ao cuidado da saúde mental. Minha trajetória é marcada pelo compromisso com uma escuta ética, humana e profundamente personalizada.</p>
+                        <p class="text-muted mb-5">Especialista em Terapia Cognitivo-Comportamental (TCC) e com sólida formação em Saúde Mental, atuo auxiliando adultos e adolescentes a ressignificarem suas dores.</p>
+                        <div class="row g-3 mb-5">
+                            <div class="col-6">
+                                <h3 class="h6 fw-bold mb-0">CRP 06/00000</h3>
+                                <small class="text-muted">Conselho Regional</small>
+                            </div>
+                            <div class="col-6">
+                                <h3 class="h6 fw-bold mb-0">Mestre em Psicologia</h3>
+                                <small class="text-muted">Formação Acadêmica</small>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="cta-final" id="contatos">
-        <div class="container">
-            <h2 class="display-4 fw-bold mb-4">Pronta para o primeiro passo?</h2>
-            <p class="lead mb-5">Estou à disposição para acolher suas questões e iniciar essa jornada ao seu lado.</p>
-            <a href="#" class="btn-premium" style="background: var(--accent); box-shadow: 0 15px 35px rgba(133, 95, 55, 0.4);">Falar agora pelo WhatsApp</a>
-        </div>
-    </section>
+        <section class="services">
+            <div class="container">
+                <h2 class="display-5 fw-bold text-center mb-5">Como posso te ajudar</h2>
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-4">
+                        <article class="service-card">
+                            <span class="card-idx" aria-hidden="true">01</span>
+                            <h3 class="h4 fw-bold mb-3">Ansiedade</h3>
+                            <p class="text-muted mb-0">Ferramentas para gerenciar crises, identificar gatilhos e retomar a paz no dia a dia.</p>
+                        </article>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <article class="service-card">
+                            <span class="card-idx" aria-hidden="true">02</span>
+                            <h3 class="h4 fw-bold mb-3">Relacionamentos</h3>
+                            <p class="text-muted mb-0">Trabalhando a comunicação, limites e a inteligência emocional nas suas conexões.</p>
+                        </article>
+                    </div>
+                    <div class="col-md-12 col-lg-4">
+                        <article class="service-card">
+                            <span class="card-idx" aria-hidden="true">03</span>
+                            <h3 class="h4 fw-bold mb-3">Autoconhecimento</h3>
+                            <p class="text-muted mb-0">Um mergulho profundo para entender seus padrões e potencializar suas virtudes.</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-final" id="contatos">
+            <div class="container">
+                <h2 class="display-4 fw-bold mb-4">Pronta para o primeiro passo?</h2>
+                <p class="lead mb-5">Estou à disposição para acolher suas questões e iniciar essa jornada ao seu lado.</p>
+                <a href="#" class="btn-premium" style="background: var(--accent); box-shadow: 0 15px 35px rgba(133, 95, 55, 0.4);">Falar agora pelo WhatsApp</a>
+            </div>
+        </section>
+    </main>
 
     <footer>
         <div class="container">
