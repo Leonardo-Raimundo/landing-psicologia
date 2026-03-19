@@ -8,13 +8,13 @@
     <style>
         :root {
             --primary: #5b8a82;
-            --primary-dark: #466b65;
-            --accent: #a67c52; /* Escurecido para contraste (Acessibilidade) */
+            --primary-dark: #3b5c56; /* Escurecido para Contraste */
+            --accent: #8d6e4d; /* Dourado Terroso Escurecido (Acessibilidade) */
             --bg-soft: #fdfbf9;
-            --text-main: #2d3436;
-            --text-muted: #596264; /* Escurecido de #636e72 para melhor leitura */
+            --text-main: #1a1c1d; /* Quase preto para leitura perfeita */
+            --text-muted: #545b5c; /* Cinza de alto contraste */
             --transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-            --section-padding: clamp(60px, 10vw, 140px);
+            --section-padding: clamp(60px, 10vw, 120px);
         }
 
         body {
@@ -23,13 +23,14 @@
             color: var(--text-main);
             overflow-x: hidden;
             letter-spacing: -0.01em;
+            line-height: 1.6;
         }
 
-        /* --- HEADER --- */
+        /* --- HEADER ULTRA RESPONSIVO --- */
         .navbar {
             backdrop-filter: blur(15px);
             background: rgba(253, 251, 249, 0.98);
-            border-bottom: 1px solid rgba(0,0,0,0.08);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
             padding: 0; 
             height: 70px;
             display: flex;
@@ -41,47 +42,45 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: nowrap !important;
-            padding-left: 15px;
-            padding-right: 15px;
+            padding: 0 15px;
         }
 
         .navbar-brand {
             font-weight: 800;
             text-transform: uppercase;
             color: var(--primary-dark) !important;
-            font-size: clamp(0.85rem, 4vw, 1.2rem);
+            font-size: clamp(0.8rem, 3.5vw, 1.1rem);
             margin: 0;
-            flex-shrink: 1;
             white-space: nowrap;
+            letter-spacing: 1px;
         }
 
         .btn-nav {
-            padding: 8px 12px;
+            padding: 8px 14px;
             background: var(--primary);
-            color: white !important;
+            color: #ffffff !important;
             border-radius: 100px;
             font-weight: 700;
             text-decoration: none;
-            font-size: 0.75rem;
+            font-size: clamp(0.65rem, 3vw, 0.85rem);
             white-space: nowrap;
             flex-shrink: 0;
-            margin-left: 10px;
+            transition: var(--transition);
         }
 
         @media (min-width: 768px) {
-            .navbar { height: 90px; }
-            .btn-nav { padding: 12px 28px; font-size: 0.85rem; }
-            .navbar-brand { font-size: 1.2rem; letter-spacing: 2px; }
+            .navbar { height: 85px; }
+            .btn-nav { padding: 12px 28px; }
         }
 
         /* --- HERO --- */
         .hero {
-            padding: clamp(100px, 15vh, 180px) 0 clamp(60px, 8vw, 100px);
+            padding: clamp(110px, 15vh, 160px) 0 clamp(50px, 8vw, 80px);
             position: relative;
         }
 
         .hero-title {
-            font-size: clamp(2.3rem, 8vw, 5.5rem);
+            font-size: clamp(2.2rem, 8vw, 5rem);
             font-weight: 900;
             line-height: 1.1;
             margin-bottom: 25px;
@@ -91,16 +90,18 @@
         .hero-title span { color: var(--primary); position: relative; }
         .hero-title span::after {
             content: ''; position: absolute; bottom: 10%; left: 0; width: 105%;
-            height: clamp(6px, 2vw, 12px); background: var(--accent); opacity: 0.2; z-index: -1;
+            height: clamp(6px, 2vw, 12px); background: var(--accent); opacity: 0.25; z-index: -1;
+        }
+
+        /* Ajuste do botão no Mobile p/ não colar na foto */
+        .hero .btn-premium {
+            margin-bottom: clamp(3rem, 10vw, 0rem); 
         }
 
         .hero-image-wrap img {
-            width: 100%; border-radius: clamp(30px, 8vw, 80px) 15px;
+            width: 100%; 
+            border-radius: clamp(30px, 8vw, 80px) 15px;
             box-shadow: 20px 20px 60px rgba(0,0,0,0.1);
-        }
-
-        @media (max-width: 991px) {
-            .hero .btn-premium { margin-bottom: 50px; }
         }
 
         /* --- SOBRE MIM --- */
@@ -109,40 +110,50 @@
         .about-img-main { width: 85%; border-radius: 25px; box-shadow: 15px 15px 40px rgba(0,0,0,0.1); }
         .about-img-sub {
             width: 50%; position: absolute; bottom: -20px; right: 0;
-            border-radius: 15px; border: 6px solid #fff; box-shadow: 10px 10px 30px rgba(0,0,0,0.08);
+            border-radius: 15px; border: 6px solid #fff; box-shadow: 10px 10px 30px rgba(0,0,0,0.1);
         }
 
-        /* --- CARDS --- */
+        /* --- CARDS DE SERVIÇOS --- */
         .service-card {
             background: white; padding: 40px 30px; border-radius: 30px;
-            border: 1px solid rgba(0,0,0,0.06); transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.08); transition: var(--transition);
             height: 100%; position: relative; overflow: hidden;
         }
         .service-card:hover { transform: translateY(-10px); border-color: var(--accent); }
 
+        .card-idx {
+            font-size: 4rem; font-weight: 900; position: absolute; top: -10px; right: 10px;
+            opacity: 0.15 !important; color: var(--primary); /* Opacidade aumentada para contraste */
+        }
+
+        /* --- BOTÃO PREMIUM --- */
         .btn-premium {
-            padding: 18px 40px; background: var(--primary); color: white !important;
+            padding: 18px 40px; background: var(--primary); color: #ffffff !important;
             border-radius: 100px; font-weight: 700; text-decoration: none;
             display: inline-block; transition: var(--transition);
             box-shadow: 0 10px 30px rgba(91, 138, 130, 0.2);
         }
 
+        .btn-premium:hover { transform: translateY(-3px); background: var(--primary-dark); }
+
         /* --- CTA FINAL --- */
         .cta-final { 
             padding: var(--section-padding) 0; 
             background: var(--primary-dark); 
-            color: #ffffff; /* Cor branca sólida para contraste */
+            color: #ffffff; 
             text-align: center; 
             border-radius: 40px 40px 0 0; 
         }
 
-        .cta-final p.lead { color: #e9ecef !important; } /* Cinza muito claro em vez de opacidade */
+        .cta-final p { color: #e9ecef !important; }
 
-        footer { padding: 60px 0 30px; background: #fff; text-align: center; }
+        footer { padding: 60px 0 30px; background: #fff; text-align: center; border-top: 1px solid #eee; }
+        footer p { color: var(--text-muted); opacity: 1 !important; }
 
         @media (min-width: 992px) {
             .hero-image-wrap img { transform: rotate(3deg); }
             .cta-final { border-radius: 80px 80px 0 0; }
+            .hero .btn-premium { margin-bottom: 0; }
         }
     </style>
 </head>
@@ -166,7 +177,9 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="hero-image-wrap">
-                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=1000&q=80" alt="Dra. Marina Silva">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fm=webp&q=60&w=1000" 
+                             fetchpriority="high" 
+                             alt="Dra. Marina Silva">
                     </div>
                 </div>
             </div>
@@ -178,8 +191,8 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 order-2 order-lg-1">
                     <div class="about-img-stack">
-                        <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80" class="about-img-main" alt="Dra. Marina Silva">
-                        <img src="https://images.unsplash.com/photo-1527137342181-19aab11a8ee8?auto=format&fit=crop&w=600&q=80" class="about-img-sub" alt="Consultório">
+                        <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fm=webp&q=60&w=800" class="about-img-main" alt="Dra. Marina Silva">
+                        <img src="https://images.unsplash.com/photo-1527137342181-19aab11a8ee8?auto=format&fm=webp&q=60&w=600" class="about-img-sub" alt="Consultório">
                     </div>
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2 text-center text-lg-start">
@@ -207,21 +220,21 @@
             <div class="row g-4">
                 <div class="col-md-6 col-lg-4">
                     <div class="service-card">
-                        <span class="card-idx" style="font-size: 4rem; font-weight: 900; position: absolute; top: -10px; right: 10px; opacity: 0.1; color: var(--primary);">01</span>
+                        <span class="card-idx">01</span>
                         <h4 class="fw-bold mb-3">Ansiedade</h4>
                         <p class="text-muted mb-0">Ferramentas para gerenciar crises, identificar gatilhos e retomar a paz no dia a dia.</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
                     <div class="service-card">
-                        <span class="card-idx" style="font-size: 4rem; font-weight: 900; position: absolute; top: -10px; right: 10px; opacity: 0.1; color: var(--primary);">02</span>
+                        <span class="card-idx">02</span>
                         <h4 class="fw-bold mb-3">Relacionamentos</h4>
                         <p class="text-muted mb-0">Trabalhando a comunicação, limites e a inteligência emocional nas suas conexões.</p>
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-4">
                     <div class="service-card">
-                        <span class="card-idx" style="font-size: 4rem; font-weight: 900; position: absolute; top: -10px; right: 10px; opacity: 0.1; color: var(--primary);">03</span>
+                        <span class="card-idx">03</span>
                         <h4 class="fw-bold mb-3">Autoconhecimento</h4>
                         <p class="text-muted mb-0">Um mergulho profundo para entender seus padrões e potencializar suas virtudes.</p>
                     </div>
@@ -234,7 +247,7 @@
         <div class="container">
             <h2 class="display-4 fw-bold mb-4">Pronta para o primeiro passo?</h2>
             <p class="lead mb-5">Estou à disposição para acolher suas questões e iniciar essa jornada ao seu lado.</p>
-            <a href="#" class="btn-premium" style="background: var(--accent);">Falar agora pelo WhatsApp</a>
+            <a href="#" class="btn-premium" style="background: var(--accent); box-shadow: 0 15px 35px rgba(166, 124, 82, 0.3);">Falar agora pelo WhatsApp</a>
         </div>
     </section>
 
@@ -242,7 +255,7 @@
         <div class="container">
             <div class="navbar-brand mb-3 d-block">Marina Silva</div>
             <p class="text-muted small">Psicóloga Clínica | CRP 06/00000</p>
-            <p class="mt-4 mb-0 text-muted" style="font-size: 0.75rem;">© 2026 Dra. Marina Silva. Todos os direitos reservados.</p>
+            <p class="mt-4 mb-0 text-muted" style="font-size: 0.8rem;">© 2026 Dra. Marina Silva. Todos os direitos reservados.</p>
         </div>
     </footer>
 
