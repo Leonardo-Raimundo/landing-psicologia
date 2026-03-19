@@ -9,10 +9,10 @@
         :root {
             --primary: #5b8a82;
             --primary-dark: #466b65;
-            --accent: #c5a37d;
+            --accent: #a67c52; /* Escurecido para contraste (Acessibilidade) */
             --bg-soft: #fdfbf9;
             --text-main: #2d3436;
-            --text-muted: #636e72;
+            --text-muted: #596264; /* Escurecido de #636e72 para melhor leitura */
             --transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
             --section-padding: clamp(60px, 10vw, 140px);
         }
@@ -25,11 +25,11 @@
             letter-spacing: -0.01em;
         }
 
-        /* --- HEADER BLINDADO --- */
+        /* --- HEADER --- */
         .navbar {
             backdrop-filter: blur(15px);
-            background: rgba(253, 251, 249, 0.95);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            background: rgba(253, 251, 249, 0.98);
+            border-bottom: 1px solid rgba(0,0,0,0.08);
             padding: 0; 
             height: 70px;
             display: flex;
@@ -51,7 +51,6 @@
             color: var(--primary-dark) !important;
             font-size: clamp(0.85rem, 4vw, 1.2rem);
             margin: 0;
-            padding: 0;
             flex-shrink: 1;
             white-space: nowrap;
         }
@@ -63,7 +62,7 @@
             border-radius: 100px;
             font-weight: 700;
             text-decoration: none;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             white-space: nowrap;
             flex-shrink: 0;
             margin-left: 10px;
@@ -92,7 +91,7 @@
         .hero-title span { color: var(--primary); position: relative; }
         .hero-title span::after {
             content: ''; position: absolute; bottom: 10%; left: 0; width: 105%;
-            height: clamp(6px, 2vw, 12px); background: var(--accent); opacity: 0.15; z-index: -1;
+            height: clamp(6px, 2vw, 12px); background: var(--accent); opacity: 0.2; z-index: -1;
         }
 
         .hero-image-wrap img {
@@ -100,14 +99,11 @@
             box-shadow: 20px 20px 60px rgba(0,0,0,0.1);
         }
 
-        /* --- BOTÃO HERO ESPAÇAMENTO MOBILE --- */
         @media (max-width: 991px) {
-            .hero .btn-premium {
-                margin-bottom: 50px; /* Garante que o botão não cole na imagem no mobile */
-            }
+            .hero .btn-premium { margin-bottom: 50px; }
         }
 
-        /* --- RESTANTE DO LAYOUT --- */
+        /* --- SOBRE MIM --- */
         .about-section { padding: var(--section-padding) 0; background: #fff; }
         .about-img-stack { position: relative; display: flex; justify-content: center; margin-bottom: 50px; }
         .about-img-main { width: 85%; border-radius: 25px; box-shadow: 15px 15px 40px rgba(0,0,0,0.1); }
@@ -116,9 +112,10 @@
             border-radius: 15px; border: 6px solid #fff; box-shadow: 10px 10px 30px rgba(0,0,0,0.08);
         }
 
+        /* --- CARDS --- */
         .service-card {
             background: white; padding: 40px 30px; border-radius: 30px;
-            border: 1px solid rgba(0,0,0,0.03); transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.06); transition: var(--transition);
             height: 100%; position: relative; overflow: hidden;
         }
         .service-card:hover { transform: translateY(-10px); border-color: var(--accent); }
@@ -130,7 +127,17 @@
             box-shadow: 0 10px 30px rgba(91, 138, 130, 0.2);
         }
 
-        .cta-final { padding: var(--section-padding) 0; background: var(--primary-dark); color: white; text-align: center; border-radius: 40px 40px 0 0; }
+        /* --- CTA FINAL --- */
+        .cta-final { 
+            padding: var(--section-padding) 0; 
+            background: var(--primary-dark); 
+            color: #ffffff; /* Cor branca sólida para contraste */
+            text-align: center; 
+            border-radius: 40px 40px 0 0; 
+        }
+
+        .cta-final p.lead { color: #e9ecef !important; } /* Cinza muito claro em vez de opacidade */
+
         footer { padding: 60px 0 30px; background: #fff; text-align: center; }
 
         @media (min-width: 992px) {
@@ -152,7 +159,7 @@
         <div class="container text-center text-lg-start">
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <span class="text-uppercase fw-bold mb-3 d-block" style="color: var(--accent); letter-spacing: 3px; font-size: 0.7rem;">Psicologia Clínica Premium</span>
+                    <span class="text-uppercase fw-bold mb-3 d-block" style="color: var(--accent); letter-spacing: 3px; font-size: 0.75rem;">Psicologia Clínica Premium</span>
                     <h1 class="hero-title">Onde há escuta, há <span>mudança</span>.</h1>
                     <p class="lead text-muted mb-5">Uma abordagem acolhedora e especializada para reconstruir seu equilíbrio emocional e clareza mental.</p>
                     <a href="#contatos" class="btn-premium">Descobrir minha jornada</a>
@@ -200,21 +207,21 @@
             <div class="row g-4">
                 <div class="col-md-6 col-lg-4">
                     <div class="service-card">
-                        <span class="card-idx" style="font-size: 4rem; font-weight: 900; position: absolute; top: -10px; right: 10px; opacity: 0.04; color: var(--primary);">01</span>
+                        <span class="card-idx" style="font-size: 4rem; font-weight: 900; position: absolute; top: -10px; right: 10px; opacity: 0.1; color: var(--primary);">01</span>
                         <h4 class="fw-bold mb-3">Ansiedade</h4>
                         <p class="text-muted mb-0">Ferramentas para gerenciar crises, identificar gatilhos e retomar a paz no dia a dia.</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
                     <div class="service-card">
-                        <span class="card-idx" style="font-size: 4rem; font-weight: 900; position: absolute; top: -10px; right: 10px; opacity: 0.04; color: var(--primary);">02</span>
+                        <span class="card-idx" style="font-size: 4rem; font-weight: 900; position: absolute; top: -10px; right: 10px; opacity: 0.1; color: var(--primary);">02</span>
                         <h4 class="fw-bold mb-3">Relacionamentos</h4>
                         <p class="text-muted mb-0">Trabalhando a comunicação, limites e a inteligência emocional nas suas conexões.</p>
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-4">
                     <div class="service-card">
-                        <span class="card-idx" style="font-size: 4rem; font-weight: 900; position: absolute; top: -10px; right: 10px; opacity: 0.04; color: var(--primary);">03</span>
+                        <span class="card-idx" style="font-size: 4rem; font-weight: 900; position: absolute; top: -10px; right: 10px; opacity: 0.1; color: var(--primary);">03</span>
                         <h4 class="fw-bold mb-3">Autoconhecimento</h4>
                         <p class="text-muted mb-0">Um mergulho profundo para entender seus padrões e potencializar suas virtudes.</p>
                     </div>
@@ -226,7 +233,7 @@
     <section class="cta-final" id="contatos">
         <div class="container">
             <h2 class="display-4 fw-bold mb-4">Pronta para o primeiro passo?</h2>
-            <p class="lead mb-5 opacity-75">Estou à disposição para acolher suas questões e iniciar essa jornada ao seu lado.</p>
+            <p class="lead mb-5">Estou à disposição para acolher suas questões e iniciar essa jornada ao seu lado.</p>
             <a href="#" class="btn-premium" style="background: var(--accent);">Falar agora pelo WhatsApp</a>
         </div>
     </section>
@@ -235,7 +242,7 @@
         <div class="container">
             <div class="navbar-brand mb-3 d-block">Marina Silva</div>
             <p class="text-muted small">Psicóloga Clínica | CRP 06/00000</p>
-            <p class="mt-4 mb-0 text-muted" style="font-size: 0.7rem; opacity: 0.5;">© 2026 Dra. Marina Silva. Todos os direitos reservados.</p>
+            <p class="mt-4 mb-0 text-muted" style="font-size: 0.75rem;">© 2026 Dra. Marina Silva. Todos os direitos reservados.</p>
         </div>
     </footer>
 
