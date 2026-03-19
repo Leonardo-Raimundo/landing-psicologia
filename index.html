@@ -31,7 +31,7 @@
             background: rgba(253, 251, 249, 0.95);
             border-bottom: 1px solid rgba(0,0,0,0.05);
             padding: 0; 
-            height: 70px; /* Altura fixa para controle total */
+            height: 70px;
             display: flex;
             align-items: center;
         }
@@ -40,7 +40,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: nowrap !important; /* Força a não quebrar */
+            flex-wrap: nowrap !important;
             padding-left: 15px;
             padding-right: 15px;
         }
@@ -49,23 +49,23 @@
             font-weight: 800;
             text-transform: uppercase;
             color: var(--primary-dark) !important;
-            font-size: clamp(0.85rem, 4vw, 1.2rem); /* Diminui agressivamente no mobile */
+            font-size: clamp(0.85rem, 4vw, 1.2rem);
             margin: 0;
             padding: 0;
-            flex-shrink: 1; /* Permite que o logo diminua se necessário */
+            flex-shrink: 1;
             white-space: nowrap;
         }
 
         .btn-nav {
-            padding: 8px 12px; /* Reduzido para caber em qualquer tela */
+            padding: 8px 12px;
             background: var(--primary);
             color: white !important;
             border-radius: 100px;
             font-weight: 700;
             text-decoration: none;
-            font-size: 0.7rem; /* Tamanho mínimo legível */
+            font-size: 0.7rem;
             white-space: nowrap;
-            flex-shrink: 0; /* O botão nunca encolhe, o logo sim */
+            flex-shrink: 0;
             margin-left: 10px;
         }
 
@@ -75,7 +75,7 @@
             .navbar-brand { font-size: 1.2rem; letter-spacing: 2px; }
         }
 
-        /* --- RESTANTE DO LAYOUT --- */
+        /* --- HERO --- */
         .hero {
             padding: clamp(100px, 15vh, 180px) 0 clamp(60px, 8vw, 100px);
             position: relative;
@@ -100,6 +100,14 @@
             box-shadow: 20px 20px 60px rgba(0,0,0,0.1);
         }
 
+        /* --- BOTÃO HERO ESPAÇAMENTO MOBILE --- */
+        @media (max-width: 991px) {
+            .hero .btn-premium {
+                margin-bottom: 50px; /* Garante que o botão não cole na imagem no mobile */
+            }
+        }
+
+        /* --- RESTANTE DO LAYOUT --- */
         .about-section { padding: var(--section-padding) 0; background: #fff; }
         .about-img-stack { position: relative; display: flex; justify-content: center; margin-bottom: 50px; }
         .about-img-main { width: 85%; border-radius: 25px; box-shadow: 15px 15px 40px rgba(0,0,0,0.1); }
