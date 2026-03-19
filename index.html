@@ -7,16 +7,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         :root {
-            /* Cores Otimizadas para Acessibilidade 100% (WCAG AA) */
+            /* Cores de Alto Contraste (WCAG AA Approved) */
             --primary: #3d665f;
             --primary-dark: #233a37;
             --accent: #855f37; 
             --bg-soft: #fdfbf9;
             --text-main: #1a1c1d;
-            --text-muted: #3f4748; /* Escurecido para contraste rigoroso */
-            --card-idx-color: #5d7a76; /* Escurecido para ratio > 4.5:1 */
-            --transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-            --section-padding: clamp(80px, 12vw, 140px); /* Aumentado o respiro vertical */
+            --text-muted: #3f4748;
+            --card-idx-color: #5d7a76;
+            --transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+            --section-padding: clamp(80px, 12vw, 140px);
         }
 
         /* Acessibilidade: Link de salto */
@@ -41,23 +41,34 @@
             line-height: 1.6;
         }
 
-        /* --- HEADER --- */
+        /* --- ANIMAÇÕES DE SCROLL (CSS PURO 2026) --- */
+        @keyframes revealUp {
+            from { opacity: 0; transform: translateY(60px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes colorShift {
+            0% { background-color: var(--bg-soft); }
+            50% { background-color: var(--primary-dark); color: #ffffff; }
+            100% { background-color: var(--bg-soft); }
+        }
+
+        .reveal {
+            view-timeline-name: --reveal;
+            view-timeline-axis: block;
+            animation: revealUp both;
+            animation-timeline: --reveal;
+            animation-range: entry 10% cover 30%;
+        }
+
+        /* --- HEADER ENRIQUECIDO --- */
         header { width: 100%; }
         .navbar {
             backdrop-filter: blur(15px);
             background: rgba(253, 251, 249, 0.98);
             border-bottom: 1px solid rgba(0,0,0,0.12);
             padding: 0; 
-            height: 75px;
-            display: flex;
-            align-items: center;
-        }
-
-        .navbar .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: nowrap !important;
+            min-height: 80px;
         }
 
         .navbar-brand {
@@ -65,56 +76,68 @@
             text-transform: uppercase;
             color: var(--primary-dark) !important;
             font-size: clamp(0.9rem, 3.5vw, 1.15rem);
-            margin: 0;
-            white-space: nowrap;
             letter-spacing: 1px;
         }
 
+        .nav-link {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-main) !important;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 10px;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover { color: var(--primary) !important; }
+
         .btn-nav {
-            padding: 10px 18px;
+            padding: 10px 22px;
             background: var(--primary);
             color: #ffffff !important;
             border-radius: 100px;
             font-weight: 700;
             text-decoration: none;
-            font-size: clamp(0.7rem, 3vw, 0.85rem);
+            font-size: 0.75rem;
             white-space: nowrap;
-            flex-shrink: 0;
-        }
-
-        @media (min-width: 768px) {
-            .navbar { height: 90px; }
-            .btn-nav { padding: 12px 28px; }
+            transition: var(--transition);
         }
 
         /* --- HERO --- */
         .hero {
-            padding: clamp(120px, 15vh, 180px) 0 clamp(60px, 8vw, 100px);
+            padding: clamp(150px, 20vh, 250px) 0 clamp(60px, 8vw, 100px);
             position: relative;
         }
 
         .hero-title {
-            font-size: clamp(2.2rem, 8vw, 5.5rem);
+            font-size: clamp(2.3rem, 8vw, 5.5rem);
             font-weight: 900;
-            line-height: 1.1;
+            line-height: 1;
             margin-bottom: 25px;
             letter-spacing: -0.04em;
         }
 
-        .hero-title span { color: var(--primary); position: relative; }
+        .hero-title span { color: var(--primary); position: relative; display: inline-block; }
         .hero-title span::after {
             content: ''; position: absolute; bottom: 10%; left: 0; width: 105%;
             height: clamp(6px, 2vw, 12px); background: var(--accent); opacity: 0.18; z-index: -1;
         }
 
-        @media (max-width: 991px) {
-            .hero .btn-premium { margin-bottom: 4rem; }
+        /* --- FAIXA DINÂMICA (Muda de cor no scroll) --- */
+        .dynamic-band {
+            padding: 80px 0;
+            text-align: center;
+            view-timeline-name: --band;
+            animation: colorShift linear both;
+            animation-timeline: --band;
+            animation-range: entry 0% exit 100%;
         }
 
         .hero-image-wrap img {
             width: 100%; height: auto;
             border-radius: clamp(30px, 8vw, 80px) 15px;
             box-shadow: 20px 20px 60px rgba(0,0,0,0.1);
+            transition: var(--transition);
         }
 
         /* --- SOBRE MIM --- */
@@ -123,54 +146,23 @@
         .about-img-main { width: 85%; height: auto; border-radius: 25px; box-shadow: 15px 15px 40px rgba(0,0,0,0.1); }
         .about-img-sub {
             width: 50%; height: auto; position: absolute; bottom: -20px; right: 0;
-            border-radius: 15px; border: 8px solid #fff; box-shadow: 10px 10px 30px rgba(0,0,0,0.1);
+            border-radius: 15px; border: 10px solid #fff; box-shadow: 10px 10px 30px rgba(0,0,0,0.1);
         }
 
-        /* --- SERVIÇOS (Ajustado Contraste e Espaçamento) --- */
-        .services { 
-            padding: var(--section-padding) 0 calc(var(--section-padding) + 40px); /* Mais espaço abaixo */
-            background: var(--bg-soft);
-        }
-
+        /* --- SERVIÇOS --- */
+        .services { padding: var(--section-padding) 0 calc(var(--section-padding) + 40px); background: var(--bg-soft); }
         .service-card {
-            background: #ffffff; 
-            padding: 50px 40px; 
-            border-radius: 35px;
-            border: 1.5px solid rgba(0,0,0,0.12); /* Borda mais firme p/ contraste */
-            transition: var(--transition);
-            height: 100%; 
-            position: relative; 
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+            background: #ffffff; padding: 50px 40px; border-radius: 35px;
+            border: 1.5px solid rgba(0,0,0,0.12); transition: var(--transition);
+            height: 100%; position: relative; overflow: hidden;
         }
-
-        .service-card:hover { 
-            transform: translateY(-12px); 
-            border-color: var(--accent);
-            box-shadow: 0 30px 60px rgba(61, 102, 95, 0.08);
-        }
-
+        .service-card:hover { transform: translateY(-12px); border-color: var(--accent); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
         .card-idx {
-            font-size: 4rem; 
-            font-weight: 900; 
-            position: absolute; 
-            top: -5px; 
-            right: 20px;
-            color: var(--card-idx-color); /* Cor sólida escura para acessibilidade */
-            z-index: 1;
+            font-size: 4rem; font-weight: 900; position: absolute; top: -5px; right: 20px;
+            color: var(--card-idx-color); z-index: 1;
         }
 
-        .service-card h3, .service-card p {
-            position: relative;
-            z-index: 2;
-        }
-
-        .service-card p {
-            color: var(--text-muted);
-            font-weight: 450;
-        }
-
-        /* --- BOTÕES --- */
+        /* --- BOTÃO PREMIUM --- */
         .btn-premium {
             padding: 18px 45px; background: var(--primary); color: #ffffff !important;
             border-radius: 100px; font-weight: 700; text-decoration: none;
@@ -185,12 +177,8 @@
             background: var(--primary-dark); 
             color: #ffffff; 
             text-align: center; 
-            border-radius: 50px 50px 0 0; 
-            position: relative;
-            z-index: 3;
+            border-radius: 60px 60px 0 0; 
         }
-
-        .cta-final p.lead { color: #f8f9fa !important; }
 
         footer { padding: 80px 0 40px; background: #fff; text-align: center; border-top: 1px solid #eee; }
 
@@ -199,6 +187,10 @@
             .cta-final { border-radius: 100px 100px 0 0; }
             .hero .btn-premium { margin-bottom: 0; }
         }
+        @media (max-width: 991px) {
+            .navbar-collapse { background: white; padding: 20px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-top: 10px; }
+            .hero .btn-premium { margin-bottom: 3.5rem; }
+        }
     </style>
 </head>
 <body>
@@ -206,10 +198,22 @@
     <a class="skip-link" href="#main-content">Pular para o conteúdo principal</a>
 
     <header>
-        <nav class="navbar fixed-top" aria-label="Navegação Principal">
+        <nav class="navbar navbar-expand-lg fixed-top shadow-sm" aria-label="Navegação Principal">
             <div class="container">
                 <a class="navbar-brand" href="#">Marina Silva</a>
-                <a href="#contatos" class="btn-nav">AGENDAR SESSÃO</a>
+                
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#servicos">Especialidades</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contatos">Contato</a></li>
+                    </ul>
+                    <a href="https://wa.me/55000000000" class="btn-nav">AGENDAR SESSÃO</a>
+                </div>
             </div>
         </nav>
     </header>
@@ -218,13 +222,13 @@
         <section class="hero">
             <div class="container text-center text-lg-start">
                 <div class="row align-items-center">
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 reveal">
                         <span class="text-uppercase fw-bold mb-3 d-block" style="color: var(--accent); letter-spacing: 3px; font-size: 0.75rem;">Psicologia Clínica Premium</span>
                         <h1 class="hero-title">Onde há escuta, há <span>mudança</span>.</h1>
                         <p class="lead text-muted mb-5">Uma abordagem acolhedora e especializada para reconstruir seu equilíbrio emocional e clareza mental.</p>
                         <a href="#contatos" class="btn-premium">Descobrir minha jornada</a>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 reveal">
                         <div class="hero-image-wrap">
                             <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fm=webp&q=60&w=800" 
                                  width="800" height="1000"
@@ -236,10 +240,17 @@
             </div>
         </section>
 
-        <section class="about-section">
+        <div class="dynamic-band">
+            <div class="container reveal">
+                <h2 class="display-5 fw-bold mb-4">A escuta que transforma realidades.</h2>
+                <p class="lead mx-auto" style="max-width: 700px;">Um espaço ético e sigiloso para adolescentes e adultos reconstruírem seus caminhos.</p>
+            </div>
+        </div>
+
+        <section class="about-section" id="sobre">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-6 order-2 order-lg-1">
+                    <div class="col-lg-6 order-2 order-lg-1 reveal">
                         <div class="about-img-stack">
                             <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fm=webp&q=60&w=800" 
                                  width="800" height="1000"
@@ -251,7 +262,7 @@
                                  class="about-img-sub" alt="Detalhe do consultório">
                         </div>
                     </div>
-                    <div class="col-lg-6 order-1 order-lg-2 text-center text-lg-start">
+                    <div class="col-lg-6 order-1 order-lg-2 text-center text-lg-start reveal">
                         <h2 class="display-5 fw-bold mb-4">Conheça a Profissional</h2>
                         <p class="text-muted mb-4">Sou a Dra. Marina Silva, psicóloga com mais de 12 anos de experiência clínica dedicada ao cuidado da saúde mental. Minha trajetória é marcada pelo compromisso com uma escuta ética, humana e profundamente personalizada.</p>
                         <p class="text-muted mb-5">Especialista em Terapia Cognitivo-Comportamental (TCC) e com sólida formação em Saúde Mental, atuo auxiliando adultos e adolescentes a ressignificarem suas dores.</p>
@@ -270,25 +281,25 @@
             </div>
         </section>
 
-        <section class="services">
+        <section class="services" id="servicos">
             <div class="container">
-                <h2 class="display-5 fw-bold text-center mb-5">Como posso te ajudar</h2>
+                <h2 class="display-5 fw-bold text-center mb-5 reveal">Como posso te ajudar</h2>
                 <div class="row g-4">
-                    <div class="col-md-6 col-lg-4">
+                    <div class="col-md-6 col-lg-4 reveal">
                         <article class="service-card">
                             <span class="card-idx" aria-hidden="true">01</span>
                             <h3 class="h4 fw-bold mb-3">Ansiedade</h3>
                             <p class="mb-0">Ferramentas para gerenciar crises, identificar gatilhos e retomar a paz no dia a dia.</p>
                         </article>
                     </div>
-                    <div class="col-md-6 col-lg-4">
+                    <div class="col-md-6 col-lg-4 reveal">
                         <article class="service-card">
                             <span class="card-idx" aria-hidden="true">02</span>
                             <h3 class="h4 fw-bold mb-3">Relacionamentos</h3>
                             <p class="mb-0">Trabalhando a comunicação, limites e a inteligência emocional nas suas conexões.</p>
                         </article>
                     </div>
-                    <div class="col-md-12 col-lg-4">
+                    <div class="col-md-12 col-lg-4 reveal">
                         <article class="service-card">
                             <span class="card-idx" aria-hidden="true">03</span>
                             <h3 class="h4 fw-bold mb-3">Autoconhecimento</h3>
@@ -300,10 +311,10 @@
         </section>
 
         <section class="cta-final" id="contatos">
-            <div class="container">
+            <div class="container reveal">
                 <h2 class="display-4 fw-bold mb-4">Pronta para o primeiro passo?</h2>
                 <p class="lead mb-5">Estou à disposição para acolher suas questões e iniciar essa jornada ao seu lado.</p>
-                <a href="#" class="btn-premium" style="background: var(--accent); box-shadow: 0 15px 35px rgba(133, 95, 55, 0.4);">Falar agora pelo WhatsApp</a>
+                <a href="https://wa.me/55000000000" class="btn-premium" style="background: var(--accent); box-shadow: 0 15px 35px rgba(133, 95, 55, 0.4);">Falar agora pelo WhatsApp</a>
             </div>
         </section>
     </main>
@@ -316,5 +327,6 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
