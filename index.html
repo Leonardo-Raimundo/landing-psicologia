@@ -25,23 +25,13 @@
             letter-spacing: -0.01em;
         }
 
-        .blur-glow {
-            position: absolute;
-            width: clamp(300px, 50vw, 600px);
-            height: clamp(300px, 50vw, 600px);
-            background: radial-gradient(circle, rgba(91, 138, 130, 0.12) 0%, rgba(253, 251, 249, 0) 70%);
-            border-radius: 50%;
-            filter: blur(80px);
-            z-index: -1;
-        }
-
-        /* --- HEADER CORRIGIDO --- */
+        /* --- HEADER BLINDADO --- */
         .navbar {
             backdrop-filter: blur(15px);
-            background: rgba(253, 251, 249, 0.9);
+            background: rgba(253, 251, 249, 0.95);
             border-bottom: 1px solid rgba(0,0,0,0.05);
-            padding: 12px 0; /* Altura fixa confortável */
-            height: 70px;
+            padding: 0; 
+            height: 70px; /* Altura fixa para controle total */
             display: flex;
             align-items: center;
         }
@@ -50,41 +40,42 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: nowrap; /* Impede quebra de linha que causa cortes */
+            flex-wrap: nowrap !important; /* Força a não quebrar */
+            padding-left: 15px;
+            padding-right: 15px;
         }
 
         .navbar-brand {
             font-weight: 800;
-            letter-spacing: 1px;
             text-transform: uppercase;
             color: var(--primary-dark) !important;
-            font-size: clamp(0.9rem, 4vw, 1.2rem);
-            margin-right: 10px;
+            font-size: clamp(0.85rem, 4vw, 1.2rem); /* Diminui agressivamente no mobile */
+            margin: 0;
+            padding: 0;
+            flex-shrink: 1; /* Permite que o logo diminua se necessário */
             white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
 
         .btn-nav {
-            padding: 8px 16px; /* Menor no mobile */
+            padding: 8px 12px; /* Reduzido para caber em qualquer tela */
             background: var(--primary);
             color: white !important;
             border-radius: 100px;
             font-weight: 700;
             text-decoration: none;
-            transition: var(--transition);
-            font-size: 0.75rem; /* Fonte pequena no mobile */
+            font-size: 0.7rem; /* Tamanho mínimo legível */
             white-space: nowrap;
-            flex-shrink: 0; /* Impede o botão de esmagar */
+            flex-shrink: 0; /* O botão nunca encolhe, o logo sim */
+            margin-left: 10px;
         }
 
         @media (min-width: 768px) {
-            .navbar { padding: 20px 0; height: 90px; }
+            .navbar { height: 90px; }
             .btn-nav { padding: 12px 28px; font-size: 0.85rem; }
-            .navbar-brand { letter-spacing: 2px; }
+            .navbar-brand { font-size: 1.2rem; letter-spacing: 2px; }
         }
 
-        /* --- HERO --- */
+        /* --- RESTANTE DO LAYOUT --- */
         .hero {
             padding: clamp(100px, 15vh, 180px) 0 clamp(60px, 8vw, 100px);
             position: relative;
@@ -98,124 +89,46 @@
             letter-spacing: -0.04em;
         }
 
-        .hero-title span {
-            color: var(--primary);
-            position: relative;
-            display: inline-block;
-        }
-
+        .hero-title span { color: var(--primary); position: relative; }
         .hero-title span::after {
-            content: '';
-            position: absolute;
-            bottom: 10%;
-            left: 0;
-            width: 105%;
-            height: clamp(6px, 2vw, 12px);
-            background: var(--accent);
-            opacity: 0.15;
-            z-index: -1;
-        }
-
-        .hero-image-wrap {
-            margin-top: clamp(40px, 8vw, 0px);
+            content: ''; position: absolute; bottom: 10%; left: 0; width: 105%;
+            height: clamp(6px, 2vw, 12px); background: var(--accent); opacity: 0.15; z-index: -1;
         }
 
         .hero-image-wrap img {
-            width: 100%;
-            border-radius: clamp(30px, 8vw, 80px) 15px;
+            width: 100%; border-radius: clamp(30px, 8vw, 80px) 15px;
             box-shadow: 20px 20px 60px rgba(0,0,0,0.1);
-            transition: var(--transition);
         }
 
-        /* --- SOBRE MIM --- */
-        .about-section {
-            padding: var(--section-padding) 0;
-            background: #fff;
-        }
-
-        .about-img-stack {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            margin-bottom: 50px;
-        }
-
-        .about-img-main {
-            width: 85%;
-            border-radius: 25px;
-            box-shadow: 15px 15px 40px rgba(0,0,0,0.1);
-        }
-
+        .about-section { padding: var(--section-padding) 0; background: #fff; }
+        .about-img-stack { position: relative; display: flex; justify-content: center; margin-bottom: 50px; }
+        .about-img-main { width: 85%; border-radius: 25px; box-shadow: 15px 15px 40px rgba(0,0,0,0.1); }
         .about-img-sub {
-            width: 50%;
-            position: absolute;
-            bottom: -20px;
-            right: 0;
-            border-radius: 15px;
-            border: 6px solid #fff;
-            box-shadow: 10px 10px 30px rgba(0,0,0,0.08);
+            width: 50%; position: absolute; bottom: -20px; right: 0;
+            border-radius: 15px; border: 6px solid #fff; box-shadow: 10px 10px 30px rgba(0,0,0,0.08);
         }
 
-        /* --- CARDS --- */
         .service-card {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 30px;
-            border: 1px solid rgba(0,0,0,0.03);
-            transition: var(--transition);
-            height: 100%;
-            position: relative;
-            overflow: hidden;
+            background: white; padding: 40px 30px; border-radius: 30px;
+            border: 1px solid rgba(0,0,0,0.03); transition: var(--transition);
+            height: 100%; position: relative; overflow: hidden;
         }
+        .service-card:hover { transform: translateY(-10px); border-color: var(--accent); }
 
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent);
-        }
-
-        .card-idx {
-            font-size: 4rem;
-            font-weight: 900;
-            position: absolute;
-            top: -10px;
-            right: 10px;
-            opacity: 0.04;
-            color: var(--primary);
-        }
-
-        /* --- BOTÕES GERAIS --- */
         .btn-premium {
-            padding: 18px 40px;
-            background: var(--primary);
-            color: white !important;
-            border-radius: 100px;
-            font-weight: 700;
-            text-decoration: none;
-            display: inline-block;
-            transition: var(--transition);
+            padding: 18px 40px; background: var(--primary); color: white !important;
+            border-radius: 100px; font-weight: 700; text-decoration: none;
+            display: inline-block; transition: var(--transition);
             box-shadow: 0 10px 30px rgba(91, 138, 130, 0.2);
         }
 
-        .btn-premium:hover {
-            transform: translateY(-3px);
-            background: var(--primary-dark);
-        }
-
-        /* --- CTA FINAL --- */
-        .cta-final {
-            padding: var(--section-padding) 0;
-            background: var(--primary-dark);
-            color: white;
-            text-align: center;
-            border-radius: 40px 40px 0 0;
-        }
+        .cta-final { padding: var(--section-padding) 0; background: var(--primary-dark); color: white; text-align: center; border-radius: 40px 40px 0 0; }
+        footer { padding: 60px 0 30px; background: #fff; text-align: center; }
 
         @media (min-width: 992px) {
-            .cta-final { border-radius: 80px 80px 0 0; }
             .hero-image-wrap img { transform: rotate(3deg); }
+            .cta-final { border-radius: 80px 80px 0 0; }
         }
-
-        footer { padding: 60px 0 30px; background: #fff; }
     </style>
 </head>
 <body>
@@ -228,13 +141,12 @@
     </nav>
 
     <section class="hero">
-        <div class="blur-glow" style="top: -5vh; right: -5vw;"></div>
         <div class="container text-center text-lg-start">
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <span class="text-uppercase fw-bold mb-3 d-block" style="color: var(--accent); letter-spacing: 3px; font-size: 0.7rem;">Psicologia Clínica Premium</span>
                     <h1 class="hero-title">Onde há escuta, há <span>mudança</span>.</h1>
-                    <p class="lead text-muted mb-5">Abordagem acolhedora para reconstruir seu equilíbrio emocional e clareza mental.</p>
+                    <p class="lead text-muted mb-5">Uma abordagem acolhedora e especializada para reconstruir seu equilíbrio emocional e clareza mental.</p>
                     <a href="#contatos" class="btn-premium">Descobrir minha jornada</a>
                 </div>
                 <div class="col-lg-6">
@@ -257,15 +169,15 @@
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2 text-center text-lg-start">
                     <h2 class="display-5 fw-bold mb-4">Conheça a Profissional</h2>
-                    <p class="text-muted mb-4">Sou a Dra. Marina Silva, psicóloga com mais de 12 anos de experiência clínica. Minha trajetória é marcada pelo compromisso com uma escuta ética e humana.</p>
-                    <p class="text-muted mb-5">Especialista em TCC, atuo auxiliando adultos e adolescentes a ressignificarem suas dores.</p>
+                    <p class="text-muted mb-4">Sou a Dra. Marina Silva, psicóloga com mais de 12 anos de experiência clínica dedicada ao cuidado da saúde mental. Minha trajetória é marcada pelo compromisso com uma escuta ética, humana e profundamente personalizada.</p>
+                    <p class="text-muted mb-5">Especialista em Terapia Cognitivo-Comportamental (TCC) e com sólida formação em Saúde Mental, atuo auxiliando adultos e adolescentes a ressignificarem suas dores.</p>
                     <div class="row g-3 mb-5">
                         <div class="col-6">
                             <h6 class="fw-bold mb-0">CRP 06/00000</h6>
                             <small class="text-muted">Conselho Regional</small>
                         </div>
                         <div class="col-6">
-                            <h6 class="fw-bold mb-0">Mestra em Psicologia</h6>
+                            <h6 class="fw-bold mb-0">Mestre em Psicologia</h6>
                             <small class="text-muted">Formação Acadêmica</small>
                         </div>
                     </div>
@@ -280,23 +192,23 @@
             <div class="row g-4">
                 <div class="col-md-6 col-lg-4">
                     <div class="service-card">
-                        <span class="card-idx">01</span>
+                        <span class="card-idx" style="font-size: 4rem; font-weight: 900; position: absolute; top: -10px; right: 10px; opacity: 0.04; color: var(--primary);">01</span>
                         <h4 class="fw-bold mb-3">Ansiedade</h4>
-                        <p class="text-muted mb-0">Ferramentas para gerenciar crises e retomar a paz no dia a dia.</p>
+                        <p class="text-muted mb-0">Ferramentas para gerenciar crises, identificar gatilhos e retomar a paz no dia a dia.</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
                     <div class="service-card">
-                        <span class="card-idx">02</span>
+                        <span class="card-idx" style="font-size: 4rem; font-weight: 900; position: absolute; top: -10px; right: 10px; opacity: 0.04; color: var(--primary);">02</span>
                         <h4 class="fw-bold mb-3">Relacionamentos</h4>
-                        <p class="text-muted mb-0">Trabalhando a comunicação e limites nas suas conexões.</p>
+                        <p class="text-muted mb-0">Trabalhando a comunicação, limites e a inteligência emocional nas suas conexões.</p>
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-4">
                     <div class="service-card">
-                        <span class="card-idx">03</span>
+                        <span class="card-idx" style="font-size: 4rem; font-weight: 900; position: absolute; top: -10px; right: 10px; opacity: 0.04; color: var(--primary);">03</span>
                         <h4 class="fw-bold mb-3">Autoconhecimento</h4>
-                        <p class="text-muted mb-0">Um mergulho profundo para entender seus padrões e virtudes.</p>
+                        <p class="text-muted mb-0">Um mergulho profundo para entender seus padrões e potencializar suas virtudes.</p>
                     </div>
                 </div>
             </div>
@@ -306,12 +218,12 @@
     <section class="cta-final" id="contatos">
         <div class="container">
             <h2 class="display-4 fw-bold mb-4">Pronta para o primeiro passo?</h2>
-            <p class="lead mb-5 opacity-75">Inicie essa jornada de transformação ao seu lado.</p>
-            <a href="#" class="btn-premium" style="background: var(--accent);">Falar pelo WhatsApp</a>
+            <p class="lead mb-5 opacity-75">Estou à disposição para acolher suas questões e iniciar essa jornada ao seu lado.</p>
+            <a href="#" class="btn-premium" style="background: var(--accent);">Falar agora pelo WhatsApp</a>
         </div>
     </section>
 
-    <footer class="text-center">
+    <footer>
         <div class="container">
             <div class="navbar-brand mb-3 d-block">Marina Silva</div>
             <p class="text-muted small">Psicóloga Clínica | CRP 06/00000</p>
