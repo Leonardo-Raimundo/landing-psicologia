@@ -3,280 +3,353 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Equilíbrio & Mente | Psicologia Clínica Especializada</title>
+    <title>Dra. Marina Silva | Psicoterapia Premium</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         :root {
-            /* Palette: Soft Teal & Warm Earth */
             --primary: #5b8a82;
             --primary-dark: #466b65;
-            --accent: #d4a373;
-            --bg-light: #fefae0;
-            --bg-white: #ffffff;
+            --accent: #c5a37d;
+            --bg-soft: #fdfbf9;
             --text-main: #2d3436;
             --text-muted: #636e72;
-            --radius: 12px;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            
-            /* Typography Fluid */
-            --fs-h1: clamp(2rem, 5vw, 3.5rem);
-            --fs-h2: clamp(1.5rem, 4vw, 2.5rem);
-            --fs-body: clamp(1rem, 2vw, 1.125rem);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            --glass: rgba(255, 255, 255, 0.8);
+            --transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg-soft);
             color: var(--text-main);
-            background-color: var(--bg-white);
-            scroll-behavior: smooth;
+            overflow-x: hidden;
+            letter-spacing: -0.01em;
         }
 
-        img {
-            max-width: 100%;
-            display: block;
-            border-radius: var(--radius);
+        /* Elements Decorativos de Fundo */
+        .blur-glow {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(91, 138, 130, 0.15) 0%, rgba(253, 251, 249, 0) 70%);
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
         }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 24px;
+        /* Custom Navbar */
+        .navbar {
+            backdrop-filter: blur(10px);
+            background: rgba(253, 251, 249, 0.8);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            padding: 20px 0;
         }
 
-        /* Reusable Components */
-        .btn {
-            display: inline-block;
-            padding: 16px 32px;
-            background-color: var(--primary);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: transform 0.2s, background 0.2s;
-            border: none;
-            cursor: pointer;
+        .navbar-brand {
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--primary-dark) !important;
         }
 
-        .btn:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-2px);
-        }
-
-        section {
-            padding: 80px 0;
-        }
-
-        /* Hero Section */
+        /* Hero Section Dinâmica */
         .hero {
-            background: linear-gradient(135deg, var(--bg-light) 0%, #ffffff 100%);
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .hero-content h1 {
-            font-size: var(--fs-h1);
-            line-height: 1.1;
-            margin-bottom: 24px;
-            color: var(--primary-dark);
-        }
-
-        .hero-content p {
-            font-size: var(--fs-body);
-            color: var(--text-muted);
-            margin-bottom: 32px;
-            max-width: 500px;
-        }
-
-        /* Benefits / Cards */
-        .section-title {
-            text-align: center;
-            font-size: var(--fs-h2);
-            margin-bottom: 48px;
-            color: var(--primary-dark);
-        }
-
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 32px;
-        }
-
-        .card {
-            padding: 40px;
-            background: var(--bg-white);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            text-align: center;
-            transition: border 0.3s;
-            border: 1px solid transparent;
-        }
-
-        .card:hover {
-            border-color: var(--primary);
-        }
-
-        .card-icon {
-            font-size: 3rem;
-            margin-bottom: 16px;
-            display: block;
-        }
-
-        .card h3 {
-            margin-bottom: 16px;
-            color: var(--primary);
-        }
-
-        /* Feature Section */
-        .feature-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .feature-image {
-            order: 2;
-        }
-
-        /* Testimonials */
-        .testimonials {
-            background-color: var(--bg-light);
-        }
-
-        .testimonial-card {
-            background: white;
-            padding: 32px;
-            border-radius: var(--radius);
-            font-style: italic;
+            padding: 160px 0 100px;
             position: relative;
         }
 
-        .user-info {
-            display: flex;
-            align-items: center;
-            margin-top: 20px;
-            font-style: normal;
+        .hero-title {
+            font-size: clamp(3rem, 7vw, 5rem);
+            font-weight: 900;
+            line-height: 0.95;
+            margin-bottom: 30px;
+            letter-spacing: -0.04em;
         }
 
-        .user-info img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 15px;
-            object-fit: cover;
+        .hero-title span {
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
         }
 
-        /* Final CTA */
-        .cta-final {
-            text-align: center;
+        .hero-title span::after {
+            content: '';
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            width: 110%;
+            height: 12px;
+            background: var(--accent);
+            opacity: 0.2;
+            z-index: -1;
+            transform: rotate(-1deg);
+        }
+
+        .hero-p {
+            font-size: 1.25rem;
+            max-width: 500px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .hero-image-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-image-container img {
+            width: 110%;
+            border-radius: 60px 10px 60px 10px;
+            box-shadow: 30px 30px 80px rgba(0,0,0,0.1);
+            transform: rotate(2deg);
+            transition: var(--transition);
+        }
+
+        .hero-image-container:hover img {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        .floating-card {
+            position: absolute;
+            bottom: -20px;
+            left: -40px;
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.5);
+            z-index: 2;
+        }
+
+        /* Botões Premium */
+        .btn-premium {
+            padding: 22px 48px;
+            background: var(--primary);
+            color: white;
+            border-radius: 100px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: var(--transition);
+            border: none;
+            box-shadow: 0 15px 35px rgba(91, 138, 130, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-premium:hover {
+            background: var(--primary-dark);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 45px rgba(70, 107, 101, 0.4);
+            color: white;
+        }
+
+        /* Seção de Benefícios Assimétrica */
+        .services {
+            padding: 120px 0;
+            background: white;
+            position: relative;
+        }
+
+        .service-card {
+            background: var(--bg-soft);
+            padding: 50px;
+            border-radius: 40px;
+            border: 1px solid transparent;
+            transition: var(--transition);
+            height: 100%;
+            position: relative;
+        }
+
+        .service-card:hover {
+            background: white;
+            border-color: var(--accent);
+            transform: translateY(-15px);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.05);
+        }
+
+        .card-idx {
+            font-size: 5rem;
+            font-weight: 900;
+            position: absolute;
+            top: -10px;
+            right: 30px;
+            opacity: 0.05;
+            color: var(--primary);
+        }
+
+        /* Feature Section - Layers */
+        .feature-split {
+            padding: 140px 0;
+            background: var(--bg-soft);
+        }
+
+        .overlap-img {
+            border-radius: 40px;
+            width: 100%;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .experience-box {
             background: var(--primary-dark);
             color: white;
-            padding: 100px 24px;
+            padding: 60px;
+            border-radius: 40px;
+            margin-left: -100px;
+            margin-top: 50px;
+            position: relative;
+            z-index: 1;
         }
 
-        .cta-final h2 {
-            margin-bottom: 24px;
+        /* Testimonials - Estilo Editorial */
+        .testimonials {
+            padding: 140px 0;
+            background: white;
+            text-align: center;
         }
 
-        .cta-final .btn {
-            background-color: var(--accent);
+        .quote-icon {
+            font-size: 4rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+            display: block;
+            opacity: 0.4;
+        }
+
+        .testimonial-text {
+            font-size: 2.2rem;
+            font-weight: 600;
+            line-height: 1.3;
+            letter-spacing: -0.03em;
+            max-width: 900px;
+            margin: 0 auto 40px;
+        }
+
+        /* Final CTA - Impacto Máximo */
+        .cta-final {
+            padding: 160px 0;
+            background: var(--primary-dark);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-final .blur-glow {
+            background: radial-gradient(circle, rgba(197, 163, 125, 0.2) 0%, transparent 70%);
+            bottom: -200px;
+            right: -100px;
         }
 
         /* Footer */
         footer {
-            padding: 40px 0;
+            padding: 80px 0 40px;
+            background: white;
             border-top: 1px solid #eee;
-            text-align: center;
         }
 
-        .footer-links {
-            margin-top: 16px;
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .footer-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-
-        /* Responsiveness */
-        @media (min-width: 992px) {
-            .hero-grid { grid-template-columns: 1.2fr 0.8fr; }
-            .feature-grid { grid-template-columns: 1fr 1fr; }
-            .feature-image { order: unset; }
-            .feature-grid.reverse .feature-content { order: 2; }
-            .feature-grid.reverse .feature-image { order: 1; }
+        @media (max-width: 991px) {
+            .hero { padding: 120px 0 60px; text-align: center; }
+            .hero-title { font-size: 3.5rem; }
+            .hero-p { margin: 0 auto 40px; }
+            .hero-image-container { margin-top: 60px; }
+            .hero-image-container img { width: 100%; transform: rotate(0); }
+            .floating-card { display: none; }
+            .experience-box { margin-left: 0; margin-top: -40px; padding: 40px; }
+            .testimonial-text { font-size: 1.6rem; }
         }
     </style>
 </head>
 <body>
 
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Marina Silva</a>
+            <div class="ms-auto">
+                <a href="#contato" class="btn btn-premium py-2 px-4" style="font-size: 0.8rem;">AGENDAR AGORA</a>
+            </div>
+        </div>
+    </nav>
+
     <section class="hero">
+        <div class="blur-glow" style="top: -100px; left: -100px;"></div>
         <div class="container">
-            <div class="hero-grid">
-                <div class="hero-content">
-                    <h1>Reencontre sua paz e equilíbrio emocional.</h1>
-                    <p>Atendimento psicoterapêutico acolhedor e especializado para ajudar você a superar ansiedade, estresse e desafios da vida moderna.</p>
-                    <a href="#contato" class="btn">Agendar Sessão de Avaliação</a>
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <span class="text-uppercase fw-bold mb-3 d-block" style="color: var(--accent); letter-spacing: 5px; font-size: 0.8rem;">Psicologia de Alta Performance</span>
+                    <h1 class="hero-title">Sua mente merece <span>equilíbrio</span> absoluto.</h1>
+                    <p class="hero-p">Atendimento clínico especializado para quem busca excelência emocional, clareza mental e a superação de ciclos de ansiedade e estresse.</p>
+                    <a href="#contatos" class="btn-premium">Descobrir minha jornada</a>
                 </div>
-                <div class="hero-image">
-                    <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=80" alt="Psicóloga sorrindo em um ambiente acolhedor">
+                <div class="col-lg-6">
+                    <div class="hero-image-container mt-lg-0 mt-5">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=1000&q=80" alt="Dra. Marina Silva">
+                        <div class="floating-card">
+                            <h5 class="mb-0 fw-bold">+12 Anos</h5>
+                            <p class="mb-0 text-muted small">De experiência clínica</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="beneficios">
+    <section class="services">
         <div class="container">
-            <h2 class="section-title">Como posso te ajudar</h2>
-            <div class="grid-3">
-                <div class="card">
-                    <span class="card-icon">🌿</span>
-                    <h3>Ansiedade</h3>
-                    <p>Técnicas comprovadas para gerenciar crises e retomar o controle da sua rotina.</p>
+            <div class="row mb-5 justify-content-between align-items-end">
+                <div class="col-lg-6">
+                    <h2 class="display-4 fw-bold mb-4" style="letter-spacing: -2px;">Pilares do Cuidado</h2>
                 </div>
-                <div class="card">
-                    <span class="card-icon">🤝</span>
-                    <h3>Relacionamentos</h3>
-                    <p>Desenvolva inteligência emocional para construir conexões mais saudáveis.</p>
+                <div class="col-lg-5">
+                    <p class="text-muted lead">Uma abordagem contemporânea focada em resultados reais e no bem-estar integral do indivíduo.</p>
                 </div>
-                <div class="card">
-                    <span class="card-icon">🎯</span>
-                    <h3>Autoconhecimento</h3>
-                    <p>Entenda seus padrões de comportamento e potencialize suas virtudes.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="service-card">
+                        <span class="card-idx">01</span>
+                        <h3 class="fw-bold mb-3">Gestão de Ansiedade</h3>
+                        <p class="text-muted">Protocolos clínicos para identificar gatilhos e construir resiliência emocional em cenários de alta pressão.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="service-card">
+                        <span class="card-idx">02</span>
+                        <h3 class="fw-bold mb-3">Conexões Saudáveis</h3>
+                        <p class="text-muted">Desenvolvimento de inteligência interpessoal para transformar relacionamentos e comunicação.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="service-card">
+                        <span class="card-idx">03</span>
+                        <h3 class="fw-bold mb-3">Alta Performance</h3>
+                        <p class="text-muted">Otimização da saúde mental para potencializar virtudes, autoconhecimento e clareza de propósito.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="feature">
+    <section class="feature-split">
         <div class="container">
-            <div class="feature-grid">
-                <div class="feature-image">
-                    <img src="https://images.unsplash.com/photo-1527137342181-19aab11a8ee8?auto=format&fit=crop&w=800&q=80" alt="Consultório confortável">
+            <div class="row align-items-center">
+                <div class="col-lg-7">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=80" class="overlap-img" alt="Consultório">
                 </div>
-                <div class="feature-content">
-                    <h2 class="section-title" style="text-align: left;">Um espaço seguro para ser você mesma.</h2>
-                    <p style="margin-bottom: 20px; color: var(--text-muted);">Minha abordagem clínica é baseada na Ética e na Terapia Cognitivo-Comportamental, focada em resultados práticos sem perder a humanização do atendimento.</p>
-                    <p style="color: var(--text-muted);">As sessões são realizadas em ambiente online ou presencial, garantindo total sigilo e conforto para sua jornada de cura.</p>
+                <div class="col-lg-6">
+                    <div class="experience-box">
+                        <h2 class="fw-bold mb-4">Um refúgio para sua evolução.</h2>
+                        <p class="mb-4 opacity-75">Meu espaço é desenhado para oferecer o máximo de privacidade e conforto, garantindo que sua única preocupação seja o seu processo de cura e evolução.</p>
+                        <p class="opacity-75">Seja presencial em Florianópolis ou online para o mundo, a entrega é baseada em absoluta ética e personalização.</p>
+                        <hr class="my-4 opacity-25">
+                        <div class="d-flex align-items-center">
+                            <span class="badge bg-light text-dark rounded-pill px-3 py-2 me-2">Terapia TCC</span>
+                            <span class="badge bg-light text-dark rounded-pill px-3 py-2">Foco em Resultados</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -284,44 +357,40 @@
 
     <section class="testimonials">
         <div class="container">
-            <h2 class="section-title">Depoimentos</h2>
-            <div class="grid-3">
-                <div class="testimonial-card">
-                    <p>"A terapia mudou minha forma de encarar o trabalho. Hoje me sinto muito mais segura e menos ansiosa."</p>
-                    <div class="user-info">
-                        <img src="https://i.pravatar.cc/150?u=1" alt="Paciente">
-                        <span>Fernanda Lima</span>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p>"Excelente profissional. O acolhimento desde a primeira sessão foi fundamental para minha recuperação."</p>
-                    <div class="user-info">
-                        <img src="https://i.pravatar.cc/150?u=2" alt="Paciente">
-                        <span>Ricardo Gomes</span>
-                    </div>
+            <span class="quote-icon">“</span>
+            <h2 class="testimonial-text">"A terapia transformou minha forma de encarar os desafios. Hoje me sinto muito mais segura e no controle das minhas emoções."</h2>
+            <div class="d-flex align-items-center justify-content-center">
+                <div class="text-start">
+                    <h6 class="mb-0 fw-bold text-uppercase" style="letter-spacing: 2px;">Fernanda Lima</h6>
+                    <small class="text-muted">São Paulo - SP</small>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="cta-final" id="contato">
+    <section class="cta-final" id="contatos">
+        <div class="blur-glow"></div>
         <div class="container">
-            <h2>Dê o primeiro passo para sua saúde mental.</h2>
-            <p style="margin-bottom: 32px; opacity: 0.9;">Clique no botão abaixo e fale diretamente comigo pelo WhatsApp para tirar suas dúvidas.</p>
-            <a href="#" class="btn">Quero Iniciar Minha Terapia</a>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h2 class="display-3 fw-bold mb-4">Dê o passo que muda tudo.</h2>
+                    <p class="lead mb-5 opacity-75">Estou à disposição para acolher suas questões e iniciar essa jornada de transformação ao seu lado.</p>
+                    <a href="#" class="btn-premium" style="background: var(--accent);">Agendar minha primeira sessão</a>
+                </div>
+            </div>
         </div>
     </section>
 
     <footer>
-        <div class="container">
-            <p><strong>Dra. Marina Silva</strong> | Psicóloga Clínica CRP 00/00000</p>
-            <ul class="footer-links">
-                <li><a href="#">Início</a></li>
-                <li><a href="#beneficios">Serviços</a></li>
-                <li><a href="#contato">Contato</a></li>
-                <li><a href="#">Privacidade</a></li>
-            </ul>
-            <p style="margin-top: 24px; font-size: 0.8rem; color: var(--text-muted);">© 2026 Todos os direitos reservados.</p>
+        <div class="container text-center">
+            <div class="navbar-brand mb-4 d-block">Marina Silva</div>
+            <p class="text-muted small mb-0">Psicóloga Clínica | CRP 06/00000</p>
+            <div class="mt-4">
+                <a href="#" class="text-muted text-decoration-none mx-3 small">Início</a>
+                <a href="#" class="text-muted text-decoration-none mx-3 small">Sobre</a>
+                <a href="#" class="text-muted text-decoration-none mx-3 small">WhatsApp</a>
+            </div>
+            <p class="mt-5 mb-0 text-muted" style="font-size: 0.7rem; opacity: 0.5;">© 2026 Todos os direitos reservados. Design Premium.</p>
         </div>
     </footer>
 
